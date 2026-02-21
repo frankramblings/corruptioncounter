@@ -229,17 +229,6 @@
       line-height: 1.5;
     }
 
-    .breakdown {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: -1rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.03em;
-    }
-    .breakdown .bd-pac { color: #6fbf73; }
-    .breakdown .bd-bundler { color: #e0a050; }
-    .breakdown .bd-sep { color: #333; margin: 0 0.4rem; }
-
     .updated {
       font-size: 0.8rem;
       color: #555;
@@ -416,7 +405,6 @@
     </div>
 
     <p class="subtitle">to buy your U.S. congressional and presidential candidates.</p>
-    <p class="breakdown" id="breakdown"></p>
     <p class="updated" id="updated"></p>
     <p class="error-msg" id="error"></p>
 
@@ -424,11 +412,10 @@
       <summary>Methodology</summary>
       <div class="content">
       <ul>
-        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), plus bundled contributions from pro-Israel mega donors, as reported in FEC filings for the 2026 election cycle.</li>
+        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), as reported in FEC filings for the 2026 election cycle.</li>
         <li><strong>PACs included (28):</strong> AIPAC PAC (<a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>), NORPAC, JStreetPAC, DMFI PAC, JACPAC, NACPAC, Desert Caucus, To Protect Our Heritage PAC, Republican Jewish Coalition PAC, Pro-Israel America PAC, Florida Congressional Committee / US Israel PAC, Hudson Valley PAC, CityPAC, Citizens Organized PAC, Maryland Assoc. for Concerned Citizens, St Louisians for Better Government, National PAC, World Alliance for Israel, Christians for Israel PAC, Friends of Israel PAC, Sun PAC, Heartland PAC, Delaware Valley PAC, Pacific Northwest PAC, Washington PAC, BayPAC, Americans for Good Government, and MOPAC &mdash; based on <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets' Pro-Israel industry list</a>.</li>
-        <li><strong>Bundlers:</strong> Individual donations from pro-Israel PAC mega donors to candidates, as tracked by <a href="https://www.trackaipac.com" target="_blank" rel="noopener">TrackAIPAC</a> using FEC individual contribution filings (Schedule A).</li>
         <li><strong>What's excluded:</strong> Independent expenditures (Super PAC spending), lobbying, dark money, and non-federal races.</li>
-        <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API and TrackAIPAC.</li>
+        <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API.</li>
       </ul>
       <div class="sources">
         <strong>Sources:</strong>
@@ -437,7 +424,6 @@
         <a href="https://api.open.fec.gov/developers/" target="_blank" rel="noopener">OpenFEC API Docs</a>
         <a href="https://www.opensecrets.org/political-action-committees-pacs/industry-detail/Q05/2024" target="_blank" rel="noopener">OpenSecrets Pro-Israel PACs</a>
         <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets Pro-Israel Overview</a>
-        <a href="https://www.trackaipac.com/candidates" target="_blank" rel="noopener">TrackAIPAC Candidates</a>
       </div>
       </div>
     </details>
