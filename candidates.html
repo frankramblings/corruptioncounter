@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidates – Pro-Israel PAC Spending 2026</title>
+  <meta name="description" content="U.S. congressional and presidential candidates ranked by how much they've received from pro-Israel PACs in 2026.">
+  <meta property="og:title" content="Candidates Ranked by Pro-Israel PAC Spending 2026">
+  <meta property="og:description" content="See which candidates have received the most from pro-Israel PACs in the 2026 election cycle.">
+  <meta property="og:type" content="website">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+
+    /* === NAV === */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+      background: #141414;
+      border-bottom: 1px solid #282828;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav a {
+      color: #777;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: #e0e0e0; }
+    .nav a.active { color: #e0e0e0; border-bottom: 2px solid #6fbf73; padding-bottom: 2px; }
+    .nav .sep { color: #333; }
+
+    /* === MAIN === */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    /* === SEARCH & FILTERS === */
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.6rem 1rem;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #e0e0e0;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .search-input::placeholder { color: #555; }
+    .search-input:focus { border-color: #6fbf73; }
+
+    .filter-select {
+      padding: 0.6rem 0.75rem;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #e0e0e0;
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .filter-select:focus { border-color: #6fbf73; }
+
+    /* === RESULTS COUNT === */
+    .results-count {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    /* === CANDIDATE LIST === */
+    .candidate-list {
+      list-style: none;
+    }
+
+    .candidate-item {
+      background: #1e1e1e;
+      border: 1px solid #282828;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .candidate-item:hover { border-color: #3a3a3a; }
+
+    .candidate-row {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      gap: 0.75rem;
+      user-select: none;
+    }
+
+    .rank {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      min-width: 2rem;
+      text-align: right;
+    }
+
+    .candidate-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .candidate-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .candidate-meta {
+      font-size: 0.75rem;
+      color: #777;
+      margin-top: 2px;
+    }
+
+    .party-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-right: 4px;
+      letter-spacing: 0.03em;
+    }
+    .party-DEM { background: #1a3a6b; color: #5b9bd5; }
+    .party-REP { background: #5a1a1a; color: #e07070; }
+    .party-LIB { background: #4a3a0a; color: #d4b94a; }
+    .party-GRE { background: #1a3a1a; color: #6fbf73; }
+    .party-IND { background: #3a3a3a; color: #aaa; }
+    .party-other { background: #2a2a2a; color: #888; }
+
+    .candidate-amount {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #6fbf73;
+      white-space: nowrap;
+    }
+
+    .expand-icon {
+      color: #444;
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+    .candidate-item.open .expand-icon { transform: rotate(90deg); }
+
+    /* === PAC DETAIL (expanded) === */
+    .pac-detail {
+      display: none;
+      padding: 0 1rem 0.75rem 3.75rem;
+      border-top: 1px solid #282828;
+    }
+    .candidate-item.open .pac-detail { display: block; }
+
+    .pac-detail-title {
+      font-size: 0.7rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+      padding-top: 0.6rem;
+    }
+
+    .pac-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 0.2rem 0;
+      color: #999;
+    }
+    .pac-line .pac-amount { color: #bbb; font-family: 'Oswald', sans-serif; }
+
+    /* === EMPTY STATE === */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    /* === FOOTER === */
+    .updated {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 2rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .error-msg {
+      color: #e57373;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 0.75rem; }
+      .candidate-row { padding: 0.6rem 0.75rem; gap: 0.5rem; }
+      .rank { min-width: 1.5rem; font-size: 0.75rem; }
+      .candidate-name { font-size: 0.85rem; }
+      .candidate-amount { font-size: 0.9rem; }
+      .pac-detail { padding-left: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html">Counter</a>
+    <span class="sep">|</span>
+    <a href="candidates.html" class="active">Candidates</a>
+    <span class="sep">|</span>
+    <a href="races.html">Races</a>
+  </nav>
+
+  <div class="container">
+    <h1>Candidates Ranked by Pro-Israel PAC Spending</h1>
+    <p class="page-subtitle">2026 election cycle &middot; sorted by total received</p>
+
+    <div class="controls">
+      <input type="text" class="search-input" id="search" placeholder="Search by name or state...">
+      <select class="filter-select" id="state-filter">
+        <option value="">All States</option>
+      </select>
+      <select class="filter-select" id="office-filter">
+        <option value="">All Offices</option>
+        <option value="H">House</option>
+        <option value="S">Senate</option>
+        <option value="P">President</option>
+      </select>
+      <select class="filter-select" id="party-filter">
+        <option value="">All Parties</option>
+        <option value="DEM">Democrat</option>
+        <option value="REP">Republican</option>
+      </select>
+    </div>
+
+    <p class="results-count" id="results-count"></p>
+
+    <ul class="candidate-list" id="candidate-list"></ul>
+    <div class="empty-state" id="empty" style="display:none;">No candidates match your filters.</div>
+
+    <p class="updated" id="updated"></p>
+    <p class="error-msg" id="error"></p>
+  </div>
+
+  <script src="candidates.js"></script>
+</body>
+</html>
