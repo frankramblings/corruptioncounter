@@ -9,6 +9,8 @@
   <meta property="og:description" content="How much have pro-Israel PACs donated to federal candidates in 2026?">
   <meta property="og:type" content="website">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
     * {
       margin: 0;
       padding: 0;
@@ -16,8 +18,10 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: #0a0a0a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      background-image:
+        radial-gradient(ellipse at 50% 30%, #2a2a2a 0%, #1a1a1a 60%);
       color: #e0e0e0;
       min-height: 100vh;
       display: flex;
@@ -29,48 +33,207 @@
     .container {
       text-align: center;
       padding: 2rem;
-      max-width: 800px;
+      max-width: 900px;
       width: 100%;
     }
 
     .label {
-      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #888;
-      margin-bottom: 0.5rem;
+      letter-spacing: 0.2em;
+      color: #999;
+      margin-bottom: 1.5rem;
+    }
+
+    /* === ODOMETER HOUSING === */
+    .odometer-housing {
+      display: inline-block;
+      padding: 18px 28px;
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 4%, #2a2a2a 10%, #222 50%, #2a2a2a 90%, #3a3a3a 96%, #4a4a4a 100%);
+      border: 2px solid #555;
+      box-shadow:
+        0 0 0 1px #222,
+        0 0 0 4px #444,
+        0 0 0 5px #333,
+        inset 0 2px 8px rgba(0,0,0,0.6),
+        0 12px 40px rgba(0,0,0,0.7),
+        0 4px 12px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    /* Chrome screw heads */
+    .odometer-housing::before,
+    .odometer-housing::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #777, #3a3a3a);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .odometer-housing::before { left: 8px; }
+    .odometer-housing::after { right: 8px; }
+
+    .odometer-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* === INDIVIDUAL DRUM === */
+    .drum-wrapper {
+      width: clamp(36px, 7vw, 58px);
+      height: clamp(56px, 11vw, 88px);
+      overflow: hidden;
+      position: relative;
+      background: #111;
+      border-left: 1px solid #2a2a2a;
+      border-right: 1px solid #0a0a0a;
+    }
+
+    .drum-wrapper:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+
+    .drum-wrapper:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* Top and bottom shadow to simulate curvature of drum */
+    .drum-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .drum-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* The rolling strip of numbers */
+    .drum {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .drum-digit {
+      width: 100%;
+      height: clamp(56px, 11vw, 88px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(30px, 6vw, 50px);
+      color: #f0f0f0;
+      text-shadow:
+        0 1px 0 #ccc,
+        0 2px 0 #bbb,
+        0 0 8px rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg,
+          #1a1a1a 0%,
+          #222 35%,
+          #2a2a2a 48%,
+          #2a2a2a 52%,
+          #222 65%,
+          #1a1a1a 100%);
+      position: relative;
+    }
+
+    /* Horizontal ridge line on each digit (like a real drum seam) */
+    .drum-digit::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* Center reading line */
+    .reading-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(200, 50, 50, 0.5);
+      box-shadow: 0 0 6px rgba(200, 50, 50, 0.3);
+      z-index: 5;
+      pointer-events: none;
+      transform: translateY(-1px);
+    }
+
+    /* === SEPARATOR CHARACTERS ($ , .) === */
+    .sep {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(30px, 6vw, 50px);
+      color: #e0e0e0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      padding: 0 2px;
+      line-height: clamp(56px, 11vw, 88px);
+      flex-shrink: 0;
+    }
+
+    .sep.dollar-sign {
+      color: #6fbf73;
+      font-size: clamp(34px, 6.5vw, 54px);
+      padding-right: 6px;
+      filter: drop-shadow(0 0 4px rgba(111, 191, 115, 0.3));
+    }
+
+    .sep.period {
+      padding: 0 1px;
+      align-self: flex-end;
+      margin-bottom: clamp(4px, 1vw, 8px);
     }
 
     .subtitle {
-      font-size: 1.4rem;
+      font-size: 1.15rem;
+      font-weight: 400;
       color: #aaa;
+      margin-top: 2rem;
       margin-bottom: 2rem;
-      line-height: 1.4;
-    }
-
-    .counter {
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      color: #ffffff;
-      padding: 1rem 0;
-      letter-spacing: -0.02em;
-    }
-
-    .counter .dollar {
-      color: #4caf50;
+      line-height: 1.5;
     }
 
     .updated {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 1.5rem;
+      letter-spacing: 0.05em;
     }
 
     .methodology {
       margin-top: 3rem;
       background: #141414;
-      border: 1px solid #222;
+      border: 1px solid #282828;
       border-radius: 8px;
       text-align: left;
       font-size: 0.9rem;
@@ -79,10 +242,12 @@
     }
 
     .methodology summary {
-      font-size: 1rem;
-      color: #ccc;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #bbb;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       cursor: pointer;
       padding: 1rem 1.5rem;
       list-style: none;
@@ -145,15 +310,30 @@
       display: none;
     }
 
+    /* === LOADING STATE === */
+    .drum-wrapper.loading .drum-digit {
+      color: #333;
+    }
+
     @media (max-width: 600px) {
       .container {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 0.75rem;
+      }
+      .odometer-housing {
+        padding: 14px 20px;
+        border-radius: 12px;
       }
       .subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        padding: 0 0.5rem;
       }
       .methodology {
         font-size: 0.8rem;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+      }
+      .sep.dollar-sign {
+        padding-right: 3px;
       }
     }
   </style>
@@ -161,9 +341,14 @@
 <body>
   <div class="container">
     <p class="label">In 2026, pro-Israel PACs have donated</p>
-    <div class="counter" id="counter" aria-live="polite">
-      <span class="dollar">$</span><span id="amount">...</span>
+
+    <div class="odometer-housing">
+      <div class="odometer-row" id="odometer" aria-live="polite">
+        <!-- Populated by JS: $ + digit drums + commas + period -->
+      </div>
+      <div class="reading-line"></div>
     </div>
+
     <p class="subtitle">to candidates for United States federal elections</p>
     <p class="updated" id="updated"></p>
     <p class="error-msg" id="error"></p>
