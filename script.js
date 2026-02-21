@@ -229,13 +229,28 @@
         return res.json();
       })
       .then(function (data) {
-        var target = typeof data.usd === 'number' ? data.usd : 0;
+        var target = typeof data.combined_usd === 'number' ? data.combined_usd :
+                     (typeof data.usd === 'number' ? data.usd : 0);
         errorEl.style.display = 'none';
         updateOdometer(target);
         hasLoadedOnce = true;
 
         if (data.last_updated) {
           updatedEl.textContent = formatLastUpdated(data.last_updated);
+        }
+
+        // Show breakdown if IE data exists
+        var breakdownEl = document.getElementById('spending-breakdown');
+        if (breakdownEl && typeof data.usd === 'number') {
+          var directUsd = data.usd;
+          var ieUsd = typeof data.independent_expenditures_usd === 'number' ? data.independent_expenditures_usd : 0;
+          if (ieUsd > 0) {
+            breakdownEl.innerHTML =
+              '<span class="breakdown-item">Direct contributions: <strong>$' + directUsd.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</strong></span>' +
+              '<span class="breakdown-sep">&middot;</span>' +
+              '<span class="breakdown-item">Independent expenditures: <strong>$' + ieUsd.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</strong></span>';
+            breakdownEl.style.display = 'flex';
+          }
         }
       })
       .catch(function (err) {

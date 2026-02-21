@@ -4,6 +4,10 @@ Fetch direct contributions from pro-Israel PACs to federal candidates
 for the 2026 cycle from the OpenFEC API, and write the total to
 data/total.json and per-candidate data to data/candidates.json.
 
+Also fetches independent expenditures (Schedule E) from the United
+Democracy Project (UDP) Super PAC and writes per-candidate IE data
+to data/independent_expenditures.json.
+
 Includes AIPAC's PAC and other pro-Israel PACs from OpenSecrets'
 Pro-Israel industry list (Q05).
 
@@ -52,12 +56,18 @@ COMMITTEES = {
     "MOPAC": "C00199950",
 }
 
+# Super PACs making independent expenditures (Schedule E)
+IE_COMMITTEES = {
+    "United Democracy Project (UDP)": "C00798280",
+}
+
 API_BASE = "https://api.open.fec.gov/v1"
 TWO_YEAR_PERIOD = 2026
 PER_PAGE = 100
 DATA_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "data"))
 TOTAL_PATH = os.path.join(DATA_DIR, "total.json")
 CANDIDATES_PATH = os.path.join(DATA_DIR, "candidates.json")
+IE_PATH = os.path.join(DATA_DIR, "independent_expenditures.json")
 
 # Rate-limit: FEC allows 1000 requests/hour with a key. Be polite.
 REQUEST_DELAY = 0.5  # seconds between requests
@@ -199,6 +209,86 @@ def lookup_candidate_for_committee(api_key, committee_id):
     return None
 
 
+def fetch_independent_expenditures(api_key, committee_id, committee_name):
+    """
+    Fetch Schedule E independent expenditures from a single committee.
+    Returns (total_usd, candidates_dict).
+
+    candidates_dict: {candidate_id: {name, party, state, office, district,
+                                      support, oppose}}
+    """
+    total = 0.0
+    candidates = {}
+
+    last_index = None
+    last_expenditure_date = None
+    page = 1
+
+    while True:
+        params = {
+            "api_key": api_key,
+            "committee_id": committee_id,
+            "cycle": TWO_YEAR_PERIOD,
+            "per_page": PER_PAGE,
+            "sort": "-expenditure_date",
+        }
+
+        if last_index is not None:
+            params["last_index"] = last_index
+            if last_expenditure_date is not None:
+                params["last_expenditure_date"] = last_expenditure_date
+
+        url = f"{API_BASE}/schedules/schedule_e/?{urlencode(params)}"
+        data = fetch_json(url)
+        results = data.get("results", [])
+
+        for item in results:
+            # Skip memo entries to avoid double-counting
+            if item.get("memo_code") == "X":
+                continue
+
+            amount = item.get("expenditure_amount", 0)
+            total += amount
+
+            cand_id = item.get("candidate_id")
+            if cand_id:
+                if cand_id not in candidates:
+                    candidates[cand_id] = {
+                        "name": format_candidate_name(
+                            item.get("candidate_name", "")
+                        ),
+                        "party": item.get("candidate_party", ""),
+                        "state": item.get("candidate_state", ""),
+                        "office": item.get("candidate_office", ""),
+                        "district": item.get("candidate_district", ""),
+                        "support": 0.0,
+                        "oppose": 0.0,
+                    }
+                indicator = item.get("support_oppose_indicator", "")
+                if indicator == "S":
+                    candidates[cand_id]["support"] += amount
+                elif indicator == "O":
+                    candidates[cand_id]["oppose"] += amount
+
+        pagination = data.get("pagination", {})
+        pages = pagination.get("pages", 1)
+
+        if not results or page >= pages:
+            break
+
+        last_indexes = pagination.get("last_indexes", {})
+        last_index = last_indexes.get("last_index")
+        last_expenditure_date = last_indexes.get("last_expenditure_date")
+
+        if last_index is None:
+            break
+
+        page += 1
+        time.sleep(REQUEST_DELAY)
+
+    return total, candidates
+
+
 def main():
     api_key = get_api_key()
     print(f"Fetching pro-Israel PAC contributions for {TWO_YEAR_PERIOD}...")
@@ -254,6 +344,7 @@ def main():
 
         if candidate_info:
             entry = {
+                "candidate_id": candidate_info["candidate_id"],
                 "name": candidate_info["name"],
                 "party": candidate_info["party"],
                 "state": candidate_info["state"],
@@ -268,6 +359,7 @@ def main():
         else:
             # Fallback: use committee name as candidate name
             entry = {
+                "candidate_id": "",
                 "name": rcpt_data["committee_name"].title(),
                 "party": "",
                 "state": rcpt_data["state"],
@@ -287,14 +379,90 @@ def main():
     # Sort by total descending
     candidates_list.sort(key=lambda x: x["total"], reverse=True)
 
+    # --- Fetch independent expenditures (Schedule E) ---
+    print(f"\nFetching independent expenditures from {len(IE_COMMITTEES)} Super PAC(s)...")
+    ie_grand_total = 0.0
+    ie_breakdown = {}
+    # Aggregate IE candidates across all IE committees
+    all_ie_candidates = {}  # {candidate_id: {info..., committees: [{name, support, oppose}]}}
+
+    for name, committee_id in IE_COMMITTEES.items():
+        try:
+            ie_amount, ie_candidates = fetch_independent_expenditures(
+                api_key, committee_id, name
+            )
+            ie_breakdown[committee_id] = {
+                "name": name,
+                "usd": round(ie_amount, 2),
+            }
+            ie_grand_total += ie_amount
+
+            # Merge candidate data
+            for cand_id, cand_data in ie_candidates.items():
+                if cand_id not in all_ie_candidates:
+                    all_ie_candidates[cand_id] = {
+                        "name": cand_data["name"],
+                        "party": cand_data["party"],
+                        "state": cand_data["state"],
+                        "office": cand_data["office"],
+                        "district": cand_data["district"],
+                        "support": 0.0,
+                        "oppose": 0.0,
+                        "committees": [],
+                    }
+                all_ie_candidates[cand_id]["support"] += cand_data["support"]
+                all_ie_candidates[cand_id]["oppose"] += cand_data["oppose"]
+                if cand_data["support"] > 0 or cand_data["oppose"] > 0:
+                    all_ie_candidates[cand_id]["committees"].append({
+                        "name": name,
+                        "support": round(cand_data["support"], 2),
+                        "oppose": round(cand_data["oppose"], 2),
+                    })
+
+            if ie_amount > 0:
+                print(f"  {name} ({committee_id}): ${ie_amount:,.2f}")
+            else:
+                print(f"  {name} ({committee_id}): $0.00")
+        except Exception as e:
+            print(f"  {name} ({committee_id}): ERROR - {e}", file=sys.stderr)
+
+    # Build IE candidates list
+    ie_candidates_list = []
+    for cand_id, cand_data in all_ie_candidates.items():
+        total_ie = cand_data["support"] + cand_data["oppose"]
+        if total_ie <= 0:
+            continue
+        ie_candidates_list.append({
+            "candidate_id": cand_id,
+            "name": cand_data["name"],
+            "party": cand_data["party"],
+            "state": cand_data["state"],
+            "office": cand_data["office"],
+            "district": cand_data["district"],
+            "support": round(cand_data["support"], 2),
+            "oppose": round(cand_data["oppose"], 2),
+            "total": round(total_ie, 2),
+            "committees": sorted(
+                cand_data["committees"],
+                key=lambda x: x["support"] + x["oppose"],
+                reverse=True,
+            ),
+        })
+
+    ie_candidates_list.sort(key=lambda x: x["total"], reverse=True)
+
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # --- Write total.json (unchanged format) ---
+    # --- Write total.json ---
     total_output = {
         "usd": round(grand_total, 2),
+        "independent_expenditures_usd": round(ie_grand_total, 2),
+        "combined_usd": round(grand_total + ie_grand_total, 2),
         "last_updated": now,
         "committees_queried": len(COMMITTEES),
+        "ie_committees_queried": len(IE_COMMITTEES),
         "breakdown": breakdown,
+        "ie_breakdown": ie_breakdown,
     }
 
     os.makedirs(DATA_DIR, exist_ok=True)
@@ -313,10 +481,26 @@ def main():
         json.dump(candidates_output, f, indent=2)
         f.write("\n")
 
-    print(f"\nGrand total: ${grand_total:,.2f}")
-    print(f"Candidates tracked: {len(candidates_list)}")
+    # --- Write independent_expenditures.json ---
+    ie_output = {
+        "last_updated": now,
+        "total_usd": round(ie_grand_total, 2),
+        "ie_committees_queried": len(IE_COMMITTEES),
+        "candidates": ie_candidates_list,
+    }
+
+    with open(IE_PATH, "w") as f:
+        json.dump(ie_output, f, indent=2)
+        f.write("\n")
+
+    print(f"\nDirect contributions: ${grand_total:,.2f}")
+    print(f"Independent expenditures: ${ie_grand_total:,.2f}")
+    print(f"Combined total: ${grand_total + ie_grand_total:,.2f}")
+    print(f"Candidates (direct): {len(candidates_list)}")
+    print(f"Candidates (IE): {len(ie_candidates_list)}")
     print(f"Written to {TOTAL_PATH}")
     print(f"Written to {CANDIDATES_PATH}")
+    print(f"Written to {IE_PATH}")
 
 
 if __name__ == "__main__":

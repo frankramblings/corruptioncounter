@@ -2,6 +2,7 @@
   'use strict';
 
   var DATA_URL = 'data/candidates.json';
+  var IE_DATA_URL = 'data/independent_expenditures.json';
   var listEl = document.getElementById('candidate-list');
   var searchEl = document.getElementById('search');
   var stateFilterEl = document.getElementById('state-filter');
@@ -13,6 +14,7 @@
   var emptyEl = document.getElementById('empty');
 
   var allCandidates = [];
+  var ieByCandidate = {};  // candidate_id -> {support, oppose, total, committees}
 
   var STATE_NAMES = {
     AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
@@ -55,6 +57,12 @@
     return parts.join(' &middot; ');
   }
 
+  function getCandidateGrandTotal(c) {
+    var ie = ieByCandidate[c.candidate_id] || null;
+    var ieTotal = ie ? ie.total : 0;
+    return c.total + ieTotal;
+  }
+
   function buildList(candidates) {
     listEl.innerHTML = '';
 
@@ -66,12 +74,14 @@
     emptyEl.style.display = 'none';
 
     var total = 0;
-    for (var t = 0; t < candidates.length; t++) total += candidates[t].total;
+    for (var t = 0; t < candidates.length; t++) total += getCandidateGrandTotal(candidates[t]);
     countEl.textContent = candidates.length + ' candidate' + (candidates.length !== 1 ? 's' : '') +
       ' \u00b7 ' + formatMoney(total) + ' total';
 
     for (var i = 0; i < candidates.length; i++) {
       var c = candidates[i];
+      var grandTotal = getCandidateGrandTotal(c);
+      var ie = ieByCandidate[c.candidate_id] || null;
       var li = document.createElement('li');
       li.className = 'candidate-item';
 
@@ -87,7 +97,7 @@
           '<div class="candidate-name">' + partyBadge + escapeHtml(c.name) + '</div>' +
           '<div class="candidate-meta">' + candidateMeta(c) + '</div>' +
         '</div>' +
-        '<span class="candidate-amount">' + formatMoney(c.total) + '</span>' +
+        '<span class="candidate-amount">' + formatMoney(grandTotal) + '</span>' +
         '<span class="expand-icon">&#9656;</span>';
 
       row.addEventListener('click', (function (item) {
@@ -96,12 +106,34 @@
 
       var detail = document.createElement('div');
       detail.className = 'pac-detail';
-      var pacHtml = '<div class="pac-detail-title">Contributing PACs</div>';
+
+      // Direct contributions section
+      var pacHtml = '<div class="pac-detail-title">Direct Contributions &middot; ' + formatMoney(c.total) + '</div>';
       var pacs = c.pacs || [];
       for (var j = 0; j < pacs.length; j++) {
         pacHtml += '<div class="pac-line"><span>' + escapeHtml(pacs[j].name) + '</span>' +
           '<span class="pac-amount">' + formatMoney(pacs[j].amount) + '</span></div>';
       }
+
+      // Independent expenditures section
+      if (ie && ie.total > 0) {
+        pacHtml += '<div class="pac-detail-title ie-title">Independent Expenditures &middot; ' + formatMoney(ie.total) + '</div>';
+        if (ie.support > 0) {
+          pacHtml += '<div class="pac-line ie-support"><span>Supporting</span>' +
+            '<span class="pac-amount">' + formatMoney(ie.support) + '</span></div>';
+        }
+        if (ie.oppose > 0) {
+          pacHtml += '<div class="pac-line ie-oppose"><span>Opposing</span>' +
+            '<span class="pac-amount">' + formatMoney(ie.oppose) + '</span></div>';
+        }
+        var comms = ie.committees || [];
+        for (var k = 0; k < comms.length; k++) {
+          var commTotal = comms[k].support + comms[k].oppose;
+          pacHtml += '<div class="pac-line"><span>' + escapeHtml(comms[k].name) + '</span>' +
+            '<span class="pac-amount">' + formatMoney(commTotal) + '</span></div>';
+        }
+      }
+
       detail.innerHTML = pacHtml;
 
       li.appendChild(row);
@@ -168,13 +200,65 @@
   }
 
   function fetchData() {
-    fetch(DATA_URL + '?t=' + Date.now())
+    var candidatesPromise = fetch(DATA_URL + '?t=' + Date.now())
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
+      });
+
+    var iePromise = fetch(IE_DATA_URL + '?t=' + Date.now())
+      .then(function (res) {
+        if (!res.ok) return { candidates: [] };
+        return res.json();
       })
-      .then(function (data) {
+      .catch(function () { return { candidates: [] }; });
+
+    Promise.all([candidatesPromise, iePromise])
+      .then(function (results) {
+        var data = results[0];
+        var ieData = results[1];
+
+        // Build IE lookup by candidate_id
+        ieByCandidate = {};
+        var ieCandidates = ieData.candidates || [];
+        for (var i = 0; i < ieCandidates.length; i++) {
+          var ic = ieCandidates[i];
+          ieByCandidate[ic.candidate_id] = ic;
+        }
+
+        // Start with direct contribution candidates
         allCandidates = data.candidates || [];
+
+        // Build set of candidate_ids already in the direct contributions list
+        var directCandIds = {};
+        for (var j = 0; j < allCandidates.length; j++) {
+          if (allCandidates[j].candidate_id) {
+            directCandIds[allCandidates[j].candidate_id] = true;
+          }
+        }
+
+        // Add IE-only candidates (those not receiving direct contributions)
+        for (var k = 0; k < ieCandidates.length; k++) {
+          var ic2 = ieCandidates[k];
+          if (!directCandIds[ic2.candidate_id]) {
+            allCandidates.push({
+              name: ic2.name,
+              party: ic2.party,
+              state: ic2.state,
+              office: ic2.office,
+              district: ic2.district,
+              total: 0,
+              candidate_id: ic2.candidate_id,
+              pacs: [],
+            });
+          }
+        }
+
+        // Re-sort by grand total (direct + IE)
+        allCandidates.sort(function (a, b) {
+          return getCandidateGrandTotal(b) - getCandidateGrandTotal(a);
+        });
+
         errorEl.style.display = 'none';
         populateStateFilter(allCandidates);
         applyFilters();
