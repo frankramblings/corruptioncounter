@@ -41,6 +41,15 @@ COMMITTEES = {
     "CityPAC": "C00187526",
     "Pro-Israel America PAC": "C00699470",
     "Christians for Israel PAC": "C00720128",
+    "Friends of Israel PAC (FIPAC)": "C00141747",
+    "Sun PAC (SUNPAC)": "C00378216",
+    "Heartland PAC": "C00131557",
+    "Delaware Valley PAC": "C00152579",
+    "Pacific Northwest PAC": "C00811802",
+    "Washington PAC (WAPAC)": "C00138560",
+    "BayPAC": "C00155713",
+    "Americans for Good Government (AGG)": "C00138701",
+    "MOPAC": "C00199950",
 }
 
 API_BASE = "https://api.open.fec.gov/v1"
