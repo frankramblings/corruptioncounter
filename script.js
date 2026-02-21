@@ -9,11 +9,9 @@
   var errorEl = document.getElementById('error');
 
   var hasLoadedOnce = false;
-  var currentDigits = [];
-  var drumElements = [];
+  var drumWrappers = []; // only the actual drum wrappers (not separators)
+  var lastFormattedStr = '';
 
-  // Format a dollar amount (in USD float) into parts: digits + separator positions
-  // Returns e.g. { whole: "1234567", cents: "89" } for 1234567.89
   function splitAmount(usd) {
     var val = Math.max(0, usd);
     var fixed = val.toFixed(2);
@@ -21,7 +19,6 @@
     return { whole: parts[0], cents: parts[1] };
   }
 
-  // Format whole part with commas: "1234567" -> "1,234,567"
   function addCommas(str) {
     var result = [];
     var count = 0;
@@ -35,40 +32,46 @@
     return result.join('');
   }
 
-  // Build the odometer DOM: $ sign, digit drums, commas, period, cent drums
-  // displayStr is like "1,234,567.89"
-  function buildOdometer(displayStr) {
-    odometerEl.innerHTML = '';
-    drumElements = [];
-    currentDigits = [];
-
-    // Dollar sign
-    var dollarEl = document.createElement('span');
-    dollarEl.className = 'sep dollar-sign';
-    dollarEl.textContent = '$';
-    odometerEl.appendChild(dollarEl);
-
-    for (var i = 0; i < displayStr.length; i++) {
-      var ch = displayStr[i];
-
-      if (ch === ',' || ch === '.') {
-        var sepEl = document.createElement('span');
-        sepEl.className = 'sep' + (ch === '.' ? ' period' : '');
-        sepEl.textContent = ch;
-        odometerEl.appendChild(sepEl);
-        drumElements.push(null); // placeholder so indices align
-        currentDigits.push(ch);
-      } else {
-        var digit = parseInt(ch, 10);
-        var wrapper = createDrum(digit);
-        odometerEl.appendChild(wrapper);
-        drumElements.push(wrapper);
-        currentDigits.push(digit);
-      }
-    }
+  function formatAmount(usd) {
+    var parts = splitAmount(usd);
+    return addCommas(parts.whole) + '.' + parts.cents;
   }
 
-  // Create a single drum wrapper with digits 0-9 stacked vertically
+  // Measure the pixel height of one digit cell inside a drum wrapper
+  function getDigitHeight(wrapper) {
+    var cell = wrapper.querySelector('.drum-digit');
+    if (!cell) return 88; // fallback
+    return cell.offsetHeight || 88;
+  }
+
+  // Set a drum to show a specific digit (0-9), optionally without animation
+  function setDrumDigit(wrapper, digit, animate) {
+    var drum = wrapper._drum;
+    if (!drum) return;
+
+    var h = getDigitHeight(wrapper);
+    var offset = -(digit * h);
+
+    if (!animate) {
+      // Disable transitions, set position, force layout, re-enable
+      drum.style.transition = 'none';
+      drum.style.webkitTransition = 'none';
+      drum.style.transform = 'translateY(' + offset + 'px)';
+      drum.style.webkitTransform = 'translateY(' + offset + 'px)';
+      // Force synchronous layout recalc
+      void drum.offsetHeight;
+      // Re-enable transitions
+      drum.style.transition = '';
+      drum.style.webkitTransition = '';
+    } else {
+      drum.style.transform = 'translateY(' + offset + 'px)';
+      drum.style.webkitTransform = 'translateY(' + offset + 'px)';
+    }
+
+    wrapper._currentDigit = digit;
+  }
+
+  // Create a single drum element with digits 0-9
   function createDrum(initialDigit) {
     var wrapper = document.createElement('div');
     wrapper.className = 'drum-wrapper';
@@ -76,7 +79,6 @@
     var drum = document.createElement('div');
     drum.className = 'drum';
 
-    // We place digits 0-9 then repeat 0 at the bottom for seamless wrap
     for (var d = 0; d <= 9; d++) {
       var cell = document.createElement('div');
       cell.className = 'drum-digit';
@@ -85,77 +87,98 @@
     }
 
     wrapper.appendChild(drum);
-
-    // Set to initial digit immediately (no transition)
-    requestAnimationFrame(function() {
-      drum.style.transition = 'none';
-      drum.style.transform = 'translateY(-' + (initialDigit * 100) + '%)';
-      // Force reflow then re-enable transitions
-      drum.offsetHeight;
-      drum.style.transition = '';
-    });
-
     wrapper._drum = drum;
     wrapper._currentDigit = initialDigit;
 
     return wrapper;
   }
 
-  // Roll a drum from its current digit to a new digit
-  function rollDrum(wrapper, newDigit, delay) {
-    if (!wrapper || !wrapper._drum) return;
-    var drum = wrapper._drum;
+  // Build the full odometer display for a formatted string like "1,234.56"
+  function buildOdometer(formatted) {
+    odometerEl.innerHTML = '';
+    drumWrappers = [];
 
-    setTimeout(function() {
-      // Add slight variation to timing for mechanical feel
-      var extraMs = Math.random() * 200;
-      drum.style.transitionDuration = (0.8 + extraMs / 1000) + 's';
-      drum.style.transform = 'translateY(-' + (newDigit * 100) + '%)';
-      wrapper._currentDigit = newDigit;
-    }, delay);
+    // Dollar sign
+    var dollarEl = document.createElement('span');
+    dollarEl.className = 'sep dollar-sign';
+    dollarEl.textContent = '$';
+    odometerEl.appendChild(dollarEl);
+
+    // Temporary array to hold drums that need initial positioning
+    var drumsToInit = [];
+
+    for (var i = 0; i < formatted.length; i++) {
+      var ch = formatted[i];
+
+      if (ch === ',' || ch === '.') {
+        var sepEl = document.createElement('span');
+        sepEl.className = 'sep' + (ch === '.' ? ' period' : '');
+        sepEl.textContent = ch;
+        odometerEl.appendChild(sepEl);
+      } else {
+        var digit = parseInt(ch, 10);
+        var wrapper = createDrum(digit);
+        odometerEl.appendChild(wrapper);
+        drumWrappers.push(wrapper);
+        drumsToInit.push({ wrapper: wrapper, digit: digit });
+      }
+    }
+
+    lastFormattedStr = formatted;
+
+    // Position drums after DOM has been laid out so offsetHeight is accurate.
+    // Use a double-rAF to guarantee the browser has painted.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        for (var j = 0; j < drumsToInit.length; j++) {
+          setDrumDigit(drumsToInit[j].wrapper, drumsToInit[j].digit, false);
+        }
+      });
+    });
   }
 
-  // Update the odometer to show a new value (in USD)
-  function updateOdometer(usd) {
-    var parts = splitAmount(usd);
-    var formatted = addCommas(parts.whole) + '.' + parts.cents;
+  // Extract just the digit characters from a formatted string
+  function extractDigits(str) {
+    return str.replace(/[^0-9]/g, '');
+  }
 
-    // If first load or format length changed, rebuild the whole thing
-    if (drumElements.length === 0 || getDigitCount(formatted) !== getDigitCount(currentDisplayStr())) {
+  // Update odometer to a new USD value
+  function updateOdometer(usd) {
+    var formatted = formatAmount(usd);
+
+    // If structure changed (different number of digits), rebuild
+    var newDigitCount = extractDigits(formatted).length;
+    var oldDigitCount = extractDigits(lastFormattedStr).length;
+
+    if (drumWrappers.length === 0 || newDigitCount !== oldDigitCount) {
       buildOdometer(formatted);
       return;
     }
 
-    // Otherwise, roll individual drums to new digits
+    // Roll individual drums to new values
+    var newDigits = extractDigits(formatted);
     var delay = 0;
-    for (var i = 0; i < formatted.length; i++) {
-      var ch = formatted[i];
-      if (ch === ',' || ch === '.') continue;
 
-      var newDigit = parseInt(ch, 10);
-      var wrapper = drumElements[i];
-      if (wrapper && wrapper._currentDigit !== newDigit) {
-        rollDrum(wrapper, newDigit, delay);
-        delay += 80; // stagger each drum slightly
+    for (var i = 0; i < drumWrappers.length; i++) {
+      var wrapper = drumWrappers[i];
+      var newDigit = parseInt(newDigits[i], 10);
+
+      if (wrapper._currentDigit !== newDigit) {
+        (function (w, d, dl) {
+          setTimeout(function () {
+            // Add slight timing variation for mechanical feel
+            var extra = Math.random() * 200;
+            var drum = w._drum;
+            drum.style.transitionDuration = (0.8 + extra / 1000) + 's';
+            drum.style.webkitTransitionDuration = (0.8 + extra / 1000) + 's';
+            setDrumDigit(w, d, true);
+          }, dl);
+        })(wrapper, newDigit, delay);
+        delay += 80;
       }
     }
 
-    // Update stored digits
-    currentDigits = [];
-    for (var j = 0; j < formatted.length; j++) {
-      var c = formatted[j];
-      currentDigits.push((c === ',' || c === '.') ? c : parseInt(c, 10));
-    }
-  }
-
-  function currentDisplayStr() {
-    return currentDigits.map(function(d) {
-      return typeof d === 'number' ? String(d) : d;
-    }).join('');
-  }
-
-  function getDigitCount(str) {
-    return str.replace(/[^0-9]/g, '').length;
+    lastFormattedStr = formatted;
   }
 
   function formatLastUpdated(isoString) {
@@ -181,7 +204,6 @@
       .then(function (data) {
         var target = typeof data.usd === 'number' ? data.usd : 0;
         errorEl.style.display = 'none';
-
         updateOdometer(target);
         hasLoadedOnce = true;
 
@@ -192,7 +214,6 @@
       .catch(function (err) {
         console.error('Failed to fetch total:', err);
         if (!hasLoadedOnce) {
-          // Show zeroed odometer on first load failure
           updateOdometer(0);
         }
         errorEl.textContent = 'Unable to load latest data. Will retry shortly.';
@@ -200,9 +221,6 @@
       });
   }
 
-  // Initial fetch
   fetchTotal();
-
-  // Periodic refresh
   setInterval(fetchTotal, REFRESH_INTERVAL_MS);
 })();
