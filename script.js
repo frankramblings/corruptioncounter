@@ -7,7 +7,6 @@
   var odometerEl = document.getElementById('odometer');
   var updatedEl = document.getElementById('updated');
   var errorEl = document.getElementById('error');
-  var breakdownEl = document.getElementById('breakdown');
 
   var hasLoadedOnce = false;
   var drumWrappers = [];
@@ -237,16 +236,6 @@
 
         if (data.last_updated) {
           updatedEl.textContent = formatLastUpdated(data.last_updated);
-        }
-
-        // Show PAC/bundler breakdown if bundler data exists
-        if (breakdownEl && data.bundler_usd > 0) {
-          var pacStr = '$' + Math.round(data.pac_usd || 0).toLocaleString('en-US');
-          var bundlerStr = '$' + Math.round(data.bundler_usd).toLocaleString('en-US');
-          breakdownEl.innerHTML =
-            '<span class="bd-pac">PACs: ' + pacStr + '</span>' +
-            '<span class="bd-sep">\u00b7</span>' +
-            '<span class="bd-bundler">Bundlers: ' + bundlerStr + '</span>';
         }
       })
       .catch(function (err) {

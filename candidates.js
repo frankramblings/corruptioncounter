@@ -96,36 +96,13 @@
 
       var detail = document.createElement('div');
       detail.className = 'pac-detail';
-      var detailHtml = '';
-
-      // Show bundler/PAC/IE summary if bundler data exists
-      if (c.bundler_total || c.pac_total || c.ie_total) {
-        detailHtml += '<div class="pac-detail-title">Breakdown</div>';
-        if (c.pac_total) {
-          detailHtml += '<div class="pac-line"><span>PAC Contributions</span>' +
-            '<span class="pac-amount">' + formatMoney(c.pac_total) + '</span></div>';
-        }
-        if (c.bundler_total) {
-          detailHtml += '<div class="pac-line"><span>Bundlers (Pro-Israel Mega Donors)</span>' +
-            '<span class="pac-amount bundler-amount">' + formatMoney(c.bundler_total) + '</span></div>';
-        }
-        if (c.ie_total) {
-          detailHtml += '<div class="pac-line"><span>Independent Expenditures</span>' +
-            '<span class="pac-amount">' + formatMoney(c.ie_total) + '</span></div>';
-        }
-        detailHtml += '<div class="pac-detail-divider"></div>';
-      }
-
-      detailHtml += '<div class="pac-detail-title">Contributing PACs</div>';
+      var pacHtml = '<div class="pac-detail-title">Contributing PACs</div>';
       var pacs = c.pacs || [];
       for (var j = 0; j < pacs.length; j++) {
-        detailHtml += '<div class="pac-line"><span>' + escapeHtml(pacs[j].name) + '</span>' +
+        pacHtml += '<div class="pac-line"><span>' + escapeHtml(pacs[j].name) + '</span>' +
           '<span class="pac-amount">' + formatMoney(pacs[j].amount) + '</span></div>';
       }
-      if (pacs.length === 0) {
-        detailHtml += '<div class="pac-line"><span class="no-data">No direct PAC contributions</span></div>';
-      }
-      detail.innerHTML = detailHtml;
+      detail.innerHTML = pacHtml;
 
       li.appendChild(row);
       li.appendChild(detail);
