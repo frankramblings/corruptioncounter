@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pro-Israel PAC Donation Counter 2026</title>
-  <meta name="description" content="Tracking direct contributions from pro-Israel PACs to federal candidates in 2026, as reported in FEC filings.">
-  <meta property="og:title" content="Pro-Israel PAC Donation Counter 2026">
-  <meta property="og:description" content="How much have pro-Israel PACs donated to federal candidates in 2026?">
+  <meta name="description" content="Tracking how much pro-Israel PACs have spent to buy your U.S. congressional and presidential candidates in 2026.">
+  <meta property="og:title" content="Pro-Israel PAC Spending Counter 2026">
+  <meta property="og:description" content="How much have pro-Israel PACs spent to buy your U.S. congressional and presidential candidates in 2026?">
   <meta property="og:type" content="website">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
@@ -15,6 +15,10 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: hidden;
     }
 
     body {
@@ -225,6 +229,17 @@
       line-height: 1.5;
     }
 
+    .breakdown {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+    }
+    .breakdown .bd-pac { color: #6fbf73; }
+    .breakdown .bd-bundler { color: #e0a050; }
+    .breakdown .bd-sep { color: #333; margin: 0 0.4rem; }
+
     .updated {
       font-size: 0.8rem;
       color: #555;
@@ -322,8 +337,24 @@
         padding: 1.5rem 0.75rem;
       }
       .odometer-housing {
-        padding: 14px 20px;
+        padding: 12px 14px;
         border-radius: 12px;
+      }
+      .drum-wrapper {
+        width: clamp(28px, 7vw, 42px);
+        height: clamp(44px, 10vw, 66px);
+      }
+      .drum-digit {
+        height: clamp(44px, 10vw, 66px);
+        font-size: clamp(24px, 5.5vw, 36px);
+      }
+      .sep {
+        font-size: clamp(24px, 5.5vw, 36px);
+        line-height: clamp(44px, 10vw, 66px);
+      }
+      .sep.dollar-sign {
+        font-size: clamp(26px, 6vw, 40px);
+        padding-right: 3px;
       }
       .subtitle {
         font-size: 1rem;
@@ -334,15 +365,48 @@
         margin-left: 0.25rem;
         margin-right: 0.25rem;
       }
-      .sep.dollar-sign {
-        padding-right: 3px;
-      }
     }
+
+    /* === NAV === */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+      background: #141414;
+      border-bottom: 1px solid #282828;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    .nav a {
+      color: #777;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: #e0e0e0; }
+    .nav a.active { color: #e0e0e0; border-bottom: 2px solid #6fbf73; padding-bottom: 2px; }
+    .nav .sep { color: #333; }
   </style>
 </head>
 <body>
+  <nav class="nav">
+    <a href="index.html" class="active">Counter</a>
+    <span class="sep">|</span>
+    <a href="candidates.html">Candidates</a>
+    <span class="sep">|</span>
+    <a href="races.html">Races</a>
+  </nav>
+
   <div class="container">
-    <p class="label">In 2026, pro-Israel PACs have donated</p>
+    <p class="label">In 2026, pro-Israel PACs have spent</p>
 
     <div class="odometer-housing">
       <div class="odometer-row" id="odometer" aria-live="polite">
@@ -351,7 +415,8 @@
       <div class="reading-line"></div>
     </div>
 
-    <p class="subtitle">to candidates for United States federal elections</p>
+    <p class="subtitle">to buy your U.S. congressional and presidential candidates.</p>
+    <p class="breakdown" id="breakdown"></p>
     <p class="updated" id="updated"></p>
     <p class="error-msg" id="error"></p>
 
@@ -359,10 +424,11 @@
       <summary>Methodology</summary>
       <div class="content">
       <ul>
-        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), as reported in FEC filings for the 2026 election cycle.</li>
+        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), plus bundled contributions from pro-Israel mega donors, as reported in FEC filings for the 2026 election cycle.</li>
         <li><strong>PACs included (28):</strong> AIPAC PAC (<a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>), NORPAC, JStreetPAC, DMFI PAC, JACPAC, NACPAC, Desert Caucus, To Protect Our Heritage PAC, Republican Jewish Coalition PAC, Pro-Israel America PAC, Florida Congressional Committee / US Israel PAC, Hudson Valley PAC, CityPAC, Citizens Organized PAC, Maryland Assoc. for Concerned Citizens, St Louisians for Better Government, National PAC, World Alliance for Israel, Christians for Israel PAC, Friends of Israel PAC, Sun PAC, Heartland PAC, Delaware Valley PAC, Pacific Northwest PAC, Washington PAC, BayPAC, Americans for Good Government, and MOPAC &mdash; based on <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets' Pro-Israel industry list</a>.</li>
+        <li><strong>Bundlers:</strong> Individual donations from pro-Israel PAC mega donors to candidates, as tracked by <a href="https://www.trackaipac.com" target="_blank" rel="noopener">TrackAIPAC</a> using FEC individual contribution filings (Schedule A).</li>
         <li><strong>What's excluded:</strong> Independent expenditures (Super PAC spending), lobbying, dark money, and non-federal races.</li>
-        <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API.</li>
+        <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API and TrackAIPAC.</li>
       </ul>
       <div class="sources">
         <strong>Sources:</strong>
@@ -371,6 +437,7 @@
         <a href="https://api.open.fec.gov/developers/" target="_blank" rel="noopener">OpenFEC API Docs</a>
         <a href="https://www.opensecrets.org/political-action-committees-pacs/industry-detail/Q05/2024" target="_blank" rel="noopener">OpenSecrets Pro-Israel PACs</a>
         <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets Pro-Israel Overview</a>
+        <a href="https://www.trackaipac.com/candidates" target="_blank" rel="noopener">TrackAIPAC Candidates</a>
       </div>
       </div>
     </details>

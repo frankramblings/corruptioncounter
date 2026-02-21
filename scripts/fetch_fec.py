@@ -2,7 +2,7 @@
 """
 Fetch direct contributions from pro-Israel PACs to federal candidates
 for the 2026 cycle from the OpenFEC API, and write the total to
-data/total.json.
+data/total.json and per-candidate data to data/candidates.json.
 
 Includes AIPAC's PAC and other pro-Israel PACs from OpenSecrets'
 Pro-Israel industry list (Q05).
@@ -55,7 +55,9 @@ COMMITTEES = {
 API_BASE = "https://api.open.fec.gov/v1"
 TWO_YEAR_PERIOD = 2026
 PER_PAGE = 100
-OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "total.json")
+DATA_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "data"))
+TOTAL_PATH = os.path.join(DATA_DIR, "total.json")
+CANDIDATES_PATH = os.path.join(DATA_DIR, "candidates.json")
 
 # Rate-limit: FEC allows 1000 requests/hour with a key. Be polite.
 REQUEST_DELAY = 0.5  # seconds between requests
@@ -83,13 +85,28 @@ def fetch_json(url):
         raise
 
 
+def format_candidate_name(name):
+    """Convert 'LASTNAME, FIRSTNAME M.' to 'Firstname M. Lastname'."""
+    if not name:
+        return "Unknown"
+    if "," in name:
+        parts = name.split(",", 1)
+        last = parts[0].strip().title()
+        first = parts[1].strip().title()
+        return f"{first} {last}"
+    return name.title()
+
+
 def fetch_committee_contributions(api_key, committee_id, committee_name):
     """
     Fetch Schedule B disbursements from a single committee to
     House (H), Senate (S), and Presidential (P) candidate committees.
-    Returns the total amount in USD.
+    Returns (total_usd, recipients_dict).
+
+    recipients_dict: {recipient_committee_id: {committee_name, state, type, total}}
     """
     total = 0.0
+    recipients = {}
 
     for committee_type in ["H", "S", "P"]:
         page = 1
@@ -115,7 +132,19 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
             results = data.get("results", [])
 
             for item in results:
-                total += item.get("disbursement_amount", 0)
+                amount = item.get("disbursement_amount", 0)
+                total += amount
+
+                rcpt_id = item.get("recipient_committee_id")
+                if rcpt_id:
+                    if rcpt_id not in recipients:
+                        recipients[rcpt_id] = {
+                            "committee_name": item.get("recipient_name", ""),
+                            "state": item.get("recipient_state", ""),
+                            "type": committee_type,
+                            "total": 0.0,
+                        }
+                    recipients[rcpt_id]["total"] += amount
 
             pagination = data.get("pagination", {})
             pages = pagination.get("pages", 1)
@@ -135,7 +164,32 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
 
         time.sleep(REQUEST_DELAY)
 
-    return total
+    return total, recipients
+
+
+def lookup_candidate_for_committee(api_key, committee_id):
+    """
+    Look up the candidate linked to a recipient committee.
+    Returns candidate dict or None.
+    """
+    params = urlencode({"api_key": api_key})
+    url = f"{API_BASE}/committee/{committee_id}/candidates/?{params}"
+    try:
+        data = fetch_json(url)
+        results = data.get("results", [])
+        if results:
+            c = results[0]
+            return {
+                "candidate_id": c.get("candidate_id", ""),
+                "name": format_candidate_name(c.get("name", "")),
+                "party": c.get("party", ""),
+                "state": c.get("state", ""),
+                "district": c.get("district", ""),
+                "office": c.get("office", ""),
+            }
+    except Exception as e:
+        print(f"  Candidate lookup failed for {committee_id}: {e}", file=sys.stderr)
+    return None
 
 
 def main():
@@ -145,15 +199,37 @@ def main():
 
     grand_total = 0.0
     breakdown = {}
+    # Aggregate recipients across all PACs: {rcpt_id: {info..., pacs: [{name, amount}]}}
+    all_recipients = {}
 
     for name, committee_id in COMMITTEES.items():
         try:
-            amount = fetch_committee_contributions(api_key, committee_id, name)
+            amount, recipients = fetch_committee_contributions(
+                api_key, committee_id, name
+            )
             breakdown[committee_id] = {
                 "name": name,
                 "usd": round(amount, 2),
             }
             grand_total += amount
+
+            # Merge recipient data
+            for rcpt_id, rcpt_data in recipients.items():
+                if rcpt_id not in all_recipients:
+                    all_recipients[rcpt_id] = {
+                        "committee_name": rcpt_data["committee_name"],
+                        "state": rcpt_data["state"],
+                        "type": rcpt_data["type"],
+                        "total": 0.0,
+                        "pacs": [],
+                    }
+                all_recipients[rcpt_id]["total"] += rcpt_data["total"]
+                if rcpt_data["total"] > 0:
+                    all_recipients[rcpt_id]["pacs"].append({
+                        "name": name,
+                        "amount": round(rcpt_data["total"], 2),
+                    })
+
             if amount > 0:
                 print(f"  {name} ({committee_id}): ${amount:,.2f}")
             else:
@@ -161,24 +237,79 @@ def main():
         except Exception as e:
             print(f"  {name} ({committee_id}): ERROR - {e}", file=sys.stderr)
 
+    # --- Look up candidate details for each recipient committee ---
+    print(f"\nLooking up candidate details for {len(all_recipients)} recipients...")
+    candidates_list = []
+
+    for rcpt_id, rcpt_data in all_recipients.items():
+        candidate_info = lookup_candidate_for_committee(api_key, rcpt_id)
+        time.sleep(REQUEST_DELAY)
+
+        if candidate_info:
+            entry = {
+                "name": candidate_info["name"],
+                "party": candidate_info["party"],
+                "state": candidate_info["state"],
+                "office": candidate_info["office"],
+                "district": candidate_info["district"],
+                "total": round(rcpt_data["total"], 2),
+                "recipient_id": rcpt_id,
+                "pacs": sorted(
+                    rcpt_data["pacs"], key=lambda x: x["amount"], reverse=True
+                ),
+            }
+        else:
+            # Fallback: use committee name as candidate name
+            entry = {
+                "name": rcpt_data["committee_name"].title(),
+                "party": "",
+                "state": rcpt_data["state"],
+                "office": rcpt_data["type"],
+                "district": "",
+                "total": round(rcpt_data["total"], 2),
+                "recipient_id": rcpt_id,
+                "pacs": sorted(
+                    rcpt_data["pacs"], key=lambda x: x["amount"], reverse=True
+                ),
+            }
+
+        candidates_list.append(entry)
+        if entry["total"] > 0:
+            print(f"  {entry['name']} ({entry['state']}): ${entry['total']:,.2f}")
+
+    # Sort by total descending
+    candidates_list.sort(key=lambda x: x["total"], reverse=True)
+
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    output = {
+    # --- Write total.json (unchanged format) ---
+    total_output = {
         "usd": round(grand_total, 2),
         "last_updated": now,
         "committees_queried": len(COMMITTEES),
         "breakdown": breakdown,
     }
 
-    output_path = os.path.normpath(OUTPUT_PATH)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    os.makedirs(DATA_DIR, exist_ok=True)
 
-    with open(output_path, "w") as f:
-        json.dump(output, f, indent=2)
+    with open(TOTAL_PATH, "w") as f:
+        json.dump(total_output, f, indent=2)
+        f.write("\n")
+
+    # --- Write candidates.json ---
+    candidates_output = {
+        "last_updated": now,
+        "candidates": candidates_list,
+    }
+
+    with open(CANDIDATES_PATH, "w") as f:
+        json.dump(candidates_output, f, indent=2)
         f.write("\n")
 
     print(f"\nGrand total: ${grand_total:,.2f}")
-    print(f"Written to {output_path}")
+    print(f"Candidates tracked: {len(candidates_list)}")
+    print(f"Written to {TOTAL_PATH}")
+    print(f"Written to {CANDIDATES_PATH}")
 
 
 if __name__ == "__main__":
