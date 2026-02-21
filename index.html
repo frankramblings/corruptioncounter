@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIPAC Donation Counter 2026</title>
+  <meta name="description" content="Tracking direct contributions made by AIPAC's PAC to federal candidates in 2026, as reported in FEC filings.">
+  <meta property="og:title" content="AIPAC Donation Counter 2026">
+  <meta property="og:description" content="How much has AIPAC's PAC donated to federal candidates in 2026?">
+  <meta property="og:type" content="website">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .label {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: #aaa;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    .counter {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      padding: 1rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .counter .dollar {
+      color: #4caf50;
+    }
+
+    .updated {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 2rem;
+    }
+
+    .methodology {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #999;
+    }
+
+    .methodology h2 {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .methodology ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .methodology li {
+      margin-bottom: 0.35rem;
+    }
+
+    .methodology a {
+      color: #6ba3d6;
+      text-decoration: none;
+    }
+
+    .methodology a:hover {
+      text-decoration: underline;
+    }
+
+    .sources {
+      margin-top: 1rem;
+    }
+
+    .sources a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .error-msg {
+      color: #e57373;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      .methodology {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="label">In 2026, AIPAC's PAC has donated</p>
+    <div class="counter" id="counter" aria-live="polite">
+      <span class="dollar">$</span><span id="amount">0</span>
+    </div>
+    <p class="subtitle">to candidates for United States federal elections</p>
+    <p class="updated" id="updated"></p>
+    <p class="error-msg" id="error"></p>
+
+    <div class="methodology">
+      <h2>Methodology</h2>
+      <ul>
+        <li><strong>What's counted:</strong> Direct contributions made by AIPAC's PAC (FEC Committee ID <a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>) to federal candidates, as reported in FEC filings for calendar year 2026.</li>
+        <li><strong>What's excluded:</strong> Independent expenditures, lobbying spending, dark money, and non-federal races. Other pro-Israel PACs are not included.</li>
+        <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API.</li>
+      </ul>
+      <div class="sources">
+        <strong>Sources:</strong>
+        <a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">FEC Committee Page</a>
+        <a href="https://www.fec.gov/data/" target="_blank" rel="noopener">FEC Data Portal</a>
+        <a href="https://api.open.fec.gov/developers/" target="_blank" rel="noopener">OpenFEC API Docs</a>
+        <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets Pro-Israel Overview</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
