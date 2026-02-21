@@ -356,8 +356,44 @@
       }
     }
   </style>
+    /* === NAV === */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+      background: #141414;
+      border-bottom: 1px solid #282828;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    .nav a {
+      color: #777;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: #e0e0e0; }
+    .nav a.active { color: #e0e0e0; border-bottom: 2px solid #6fbf73; padding-bottom: 2px; }
+    .nav .sep { color: #333; }
+  </style>
 </head>
 <body>
+  <nav class="nav">
+    <a href="index.html" class="active">Counter</a>
+    <span class="sep">|</span>
+    <a href="candidates.html">Candidates</a>
+    <span class="sep">|</span>
+    <a href="races.html">Races</a>
+  </nav>
+
   <div class="container">
     <p class="label">In 2026, pro-Israel PACs have spent</p>
 
