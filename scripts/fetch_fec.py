@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
-Fetch AIPAC PAC (C00797670) direct contributions to federal candidates
-for calendar year 2026 from the OpenFEC API, and write the total to
+Fetch direct contributions from pro-Israel PACs to federal candidates
+for the 2026 cycle from the OpenFEC API, and write the total to
 data/total.json.
+
+Includes AIPAC's PAC and other pro-Israel PACs from OpenSecrets'
+Pro-Israel industry list (Q05).
 
 Requires the FEC_API_KEY environment variable.
 """
@@ -10,16 +13,43 @@ Requires the FEC_API_KEY environment variable.
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 from urllib.request import urlopen, Request
 from urllib.error import URLError, HTTPError
 from urllib.parse import urlencode
 
-COMMITTEE_ID = "C00797670"  # AIPAC PAC
+# Pro-Israel PACs: name -> FEC Committee ID
+# Source: OpenSecrets Pro-Israel industry (Q05), FEC.gov
+COMMITTEES = {
+    "American Israel Public Affairs Cmte (AIPAC PAC)": "C00797670",
+    "NORPAC": "C00247403",
+    "JStreetPAC": "C00441949",
+    "DMFI PAC (Democratic Majority for Israel)": "C00710848",
+    "Joint Action Committee for Political Affairs (JACPAC)": "C00139659",
+    "National Action Committee (NACPAC)": "C00147983",
+    "Citizens Organized PAC": "C00110585",
+    "Desert Caucus": "C00102368",
+    "Hudson Valley PAC": "C00158865",
+    "To Protect Our Heritage PAC": "C00135541",
+    "St Louisians for Better Government": "C00148155",
+    "World Alliance for Israel": "C00236596",
+    "Republican Jewish Coalition PAC": "C00345132",
+    "Florida Congressional Committee / US Israel PAC": "C00127811",
+    "Maryland Assoc. for Concerned Citizens": "C00195024",
+    "National PAC (NATPAC)": "C00150995",
+    "CityPAC": "C00187526",
+    "Pro-Israel America PAC": "C00699470",
+    "Christians for Israel PAC": "C00720128",
+}
+
 API_BASE = "https://api.open.fec.gov/v1"
 TWO_YEAR_PERIOD = 2026
 PER_PAGE = 100
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "total.json")
+
+# Rate-limit: FEC allows 1000 requests/hour with a key. Be polite.
+REQUEST_DELAY = 0.5  # seconds between requests
 
 
 def get_api_key():
@@ -32,7 +62,7 @@ def get_api_key():
 
 def fetch_json(url):
     """Fetch a URL and return parsed JSON."""
-    req = Request(url, headers={"User-Agent": "AIPACCounter/1.0"})
+    req = Request(url, headers={"User-Agent": "ProIsraelPACCounter/1.0"})
     try:
         with urlopen(req, timeout=30) as resp:
             return json.loads(resp.read().decode("utf-8"))
@@ -44,80 +74,11 @@ def fetch_json(url):
         raise
 
 
-def fetch_contributions(api_key):
+def fetch_committee_contributions(api_key, committee_id, committee_name):
     """
-    Use the /schedules/schedule_b/ endpoint (disbursements) filtered to
-    the AIPAC PAC committee, with disbursement purpose matching
-    contributions to candidates. We also use the /schedules/schedule_a/
-    by_recipient approach, but the most direct way is to query
-    Schedule B disbursements from the committee that are contributions
-    to candidates.
-
-    Actually, the cleanest FEC endpoint for "contributions made BY a
-    committee TO candidates" is:
-
-      /committee/{id}/schedules/schedule_b/
-        ?two_year_transaction_period=2026
-        &disbursement_purpose_category=CONTRIBUTIONS
-
-    OR we can use the dedicated endpoint:
-
-      /schedules/schedule_b/
-        ?committee_id=C00797670
-        &two_year_transaction_period=2026
-
-    We'll sum all disbursement_amount values.
-    """
-    total = 0.0
-    page = 1
-    last_index = None
-    last_amount = None
-
-    while True:
-        params = {
-            "api_key": api_key,
-            "committee_id": COMMITTEE_ID,
-            "two_year_transaction_period": TWO_YEAR_PERIOD,
-            "per_page": PER_PAGE,
-            "sort": "-disbursement_date",
-            "recipient_committee_type": "H",  # will also need S and P
-        }
-
-        # The FEC API uses keyset pagination via last_index/last_offset
-        if last_index is not None:
-            params["last_index"] = last_index
-            params["last_disbursement_amount"] = last_amount
-
-        url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
-        data = fetch_json(url)
-        results = data.get("results", [])
-
-        for item in results:
-            total += item.get("disbursement_amount", 0)
-
-        pagination = data.get("pagination", {})
-        pages = pagination.get("pages", 1)
-
-        if not results or page >= pages:
-            break
-
-        # Use last_indexes for keyset pagination
-        last_indexes = pagination.get("last_indexes", {})
-        last_index = last_indexes.get("last_index")
-        last_amount = last_indexes.get("last_disbursement_amount")
-
-        if last_index is None:
-            break
-
-        page += 1
-
-    return total
-
-
-def fetch_all_candidate_contributions(api_key):
-    """
-    Fetch disbursements to House, Senate, and Presidential candidate
-    committees.
+    Fetch Schedule B disbursements from a single committee to
+    House (H), Senate (S), and Presidential (P) candidate committees.
+    Returns the total amount in USD.
     """
     total = 0.0
 
@@ -129,14 +90,12 @@ def fetch_all_candidate_contributions(api_key):
         while True:
             params = {
                 "api_key": api_key,
-                "committee_id": COMMITTEE_ID,
+                "committee_id": committee_id,
                 "two_year_transaction_period": TWO_YEAR_PERIOD,
                 "per_page": PER_PAGE,
                 "sort": "-disbursement_date",
+                "recipient_committee_type": committee_type,
             }
-
-            if committee_type:
-                params["recipient_committee_type"] = committee_type
 
             if last_index is not None:
                 params["last_index"] = last_index
@@ -163,21 +122,43 @@ def fetch_all_candidate_contributions(api_key):
                 break
 
             page += 1
+            time.sleep(REQUEST_DELAY)
+
+        time.sleep(REQUEST_DELAY)
 
     return total
 
 
 def main():
     api_key = get_api_key()
-    print(f"Fetching AIPAC PAC contributions for {TWO_YEAR_PERIOD}...")
+    print(f"Fetching pro-Israel PAC contributions for {TWO_YEAR_PERIOD}...")
+    print(f"Querying {len(COMMITTEES)} committees.\n")
 
-    total_usd = fetch_all_candidate_contributions(api_key)
+    grand_total = 0.0
+    breakdown = {}
+
+    for name, committee_id in COMMITTEES.items():
+        try:
+            amount = fetch_committee_contributions(api_key, committee_id, name)
+            breakdown[committee_id] = {
+                "name": name,
+                "usd": round(amount, 2),
+            }
+            grand_total += amount
+            if amount > 0:
+                print(f"  {name} ({committee_id}): ${amount:,.2f}")
+            else:
+                print(f"  {name} ({committee_id}): $0.00")
+        except Exception as e:
+            print(f"  {name} ({committee_id}): ERROR - {e}", file=sys.stderr)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     output = {
-        "usd": round(total_usd, 2),
+        "usd": round(grand_total, 2),
         "last_updated": now,
+        "committees_queried": len(COMMITTEES),
+        "breakdown": breakdown,
     }
 
     output_path = os.path.normpath(OUTPUT_PATH)
@@ -187,7 +168,7 @@ def main():
         json.dump(output, f, indent=2)
         f.write("\n")
 
-    print(f"Total: ${total_usd:,.2f}")
+    print(f"\nGrand total: ${grand_total:,.2f}")
     print(f"Written to {output_path}")
 
 

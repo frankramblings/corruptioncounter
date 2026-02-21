@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIPAC Donation Counter 2026</title>
-  <meta name="description" content="Tracking direct contributions made by AIPAC's PAC to federal candidates in 2026, as reported in FEC filings.">
-  <meta property="og:title" content="AIPAC Donation Counter 2026">
-  <meta property="og:description" content="How much has AIPAC's PAC donated to federal candidates in 2026?">
+  <title>Pro-Israel PAC Donation Counter 2026</title>
+  <meta name="description" content="Tracking direct contributions from pro-Israel PACs to federal candidates in 2026, as reported in FEC filings.">
+  <meta property="og:title" content="Pro-Israel PAC Donation Counter 2026">
+  <meta property="og:description" content="How much have pro-Israel PACs donated to federal candidates in 2026?">
   <meta property="og:type" content="website">
   <style>
     * {
@@ -137,7 +137,7 @@
 </head>
 <body>
   <div class="container">
-    <p class="label">In 2026, AIPAC's PAC has donated</p>
+    <p class="label">In 2026, pro-Israel PACs have donated</p>
     <div class="counter" id="counter" aria-live="polite">
       <span class="dollar">$</span><span id="amount">0</span>
     </div>
@@ -148,15 +148,17 @@
     <div class="methodology">
       <h2>Methodology</h2>
       <ul>
-        <li><strong>What's counted:</strong> Direct contributions made by AIPAC's PAC (FEC Committee ID <a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>) to federal candidates, as reported in FEC filings for calendar year 2026.</li>
-        <li><strong>What's excluded:</strong> Independent expenditures, lobbying spending, dark money, and non-federal races. Other pro-Israel PACs are not included.</li>
+        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), as reported in FEC filings for the 2026 election cycle.</li>
+        <li><strong>PACs included:</strong> AIPAC PAC (<a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>), NORPAC, JStreetPAC, DMFI PAC, JACPAC, NACPAC, Desert Caucus, To Protect Our Heritage PAC, Republican Jewish Coalition PAC, Pro-Israel America PAC, Florida Congressional Committee, Hudson Valley PAC, CityPAC, Citizens Organized PAC, Maryland Assoc. for Concerned Citizens, St Louisians for Better Government, National PAC, World Alliance for Israel, and Christians for Israel PAC &mdash; based on <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets' Pro-Israel industry list</a>.</li>
+        <li><strong>What's excluded:</strong> Independent expenditures (Super PAC spending), lobbying, dark money, and non-federal races.</li>
         <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API.</li>
       </ul>
       <div class="sources">
         <strong>Sources:</strong>
-        <a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">FEC Committee Page</a>
+        <a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">AIPAC PAC (FEC)</a>
         <a href="https://www.fec.gov/data/" target="_blank" rel="noopener">FEC Data Portal</a>
         <a href="https://api.open.fec.gov/developers/" target="_blank" rel="noopener">OpenFEC API Docs</a>
+        <a href="https://www.opensecrets.org/political-action-committees-pacs/industry-detail/Q05/2024" target="_blank" rel="noopener">OpenSecrets Pro-Israel PACs</a>
         <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets Pro-Israel Overview</a>
       </div>
     </div>
