@@ -71,18 +71,24 @@ def get_api_key():
     return key
 
 
-def fetch_json(url):
-    """Fetch a URL and return parsed JSON."""
-    req = Request(url, headers={"User-Agent": "ProIsraelPACCounter/1.0"})
-    try:
-        with urlopen(req, timeout=30) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except HTTPError as e:
-        print(f"HTTP error {e.code}: {e.reason} for {url}", file=sys.stderr)
-        raise
-    except URLError as e:
-        print(f"URL error: {e.reason} for {url}", file=sys.stderr)
-        raise
+def fetch_json(url, max_retries=4):
+    """Fetch a URL and return parsed JSON, with retry/backoff for 429s."""
+    for attempt in range(max_retries + 1):
+        req = Request(url, headers={"User-Agent": "ProIsraelPACCounter/1.0"})
+        try:
+            with urlopen(req, timeout=30) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except HTTPError as e:
+            if e.code == 429 and attempt < max_retries:
+                wait = 2 ** (attempt + 1)  # 2, 4, 8, 16 seconds
+                print(f"Rate limited (429), retrying in {wait}s... (attempt {attempt + 1}/{max_retries})", file=sys.stderr)
+                time.sleep(wait)
+                continue
+            print(f"HTTP error {e.code}: {e.reason} for {url}", file=sys.stderr)
+            raise
+        except URLError as e:
+            print(f"URL error: {e.reason} for {url}", file=sys.stderr)
+            raise
 
 
 def format_candidate_name(name):
@@ -125,7 +131,8 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
 
             if last_index is not None:
                 params["last_index"] = last_index
-                params["last_disbursement_amount"] = last_amount
+                if last_amount is not None:
+                    params["last_disbursement_amount"] = last_amount
 
             url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
             data = fetch_json(url)
