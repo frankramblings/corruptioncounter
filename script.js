@@ -12,9 +12,9 @@
   var currentDisplayValue = 0;
   var animationFrame = null;
 
+  var hasLoadedOnce = false;
+
   function formatUSD(cents) {
-    // cents is an integer representing the total in cents
-    // but we receive usd as a float, so we work in dollars here
     return cents.toLocaleString('en-US', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
@@ -76,7 +76,13 @@
         var target = typeof data.usd === 'number' ? data.usd : 0;
         errorEl.style.display = 'none';
 
-        animateCounter(currentDisplayValue, target, ANIMATION_DURATION_MS);
+        if (!hasLoadedOnce && target === 0) {
+          // First load and no data yet — show $0.00 without animation
+          amountEl.textContent = formatUSD(0);
+        } else {
+          animateCounter(currentDisplayValue, target, ANIMATION_DURATION_MS);
+        }
+        hasLoadedOnce = true;
 
         if (data.last_updated) {
           updatedEl.textContent = formatLastUpdated(data.last_updated);

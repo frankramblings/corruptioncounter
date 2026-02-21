@@ -69,7 +69,6 @@
 
     .methodology {
       margin-top: 3rem;
-      padding: 1.5rem;
       background: #141414;
       border: 1px solid #222;
       border-radius: 8px;
@@ -79,12 +78,36 @@
       color: #999;
     }
 
-    .methodology h2 {
+    .methodology summary {
       font-size: 1rem;
       color: #ccc;
-      margin-bottom: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .methodology summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .methodology summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: #666;
+      transition: transform 0.2s;
+    }
+
+    .methodology[open] summary::after {
+      content: '\2212';
+    }
+
+    .methodology .content {
+      padding: 0 1.5rem 1.5rem;
     }
 
     .methodology ul {
@@ -139,14 +162,15 @@
   <div class="container">
     <p class="label">In 2026, pro-Israel PACs have donated</p>
     <div class="counter" id="counter" aria-live="polite">
-      <span class="dollar">$</span><span id="amount">0</span>
+      <span class="dollar">$</span><span id="amount">...</span>
     </div>
     <p class="subtitle">to candidates for United States federal elections</p>
     <p class="updated" id="updated"></p>
     <p class="error-msg" id="error"></p>
 
-    <div class="methodology">
-      <h2>Methodology</h2>
+    <details class="methodology">
+      <summary>Methodology</summary>
+      <div class="content">
       <ul>
         <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), as reported in FEC filings for the 2026 election cycle.</li>
         <li><strong>PACs included:</strong> AIPAC PAC (<a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>), NORPAC, JStreetPAC, DMFI PAC, JACPAC, NACPAC, Desert Caucus, To Protect Our Heritage PAC, Republican Jewish Coalition PAC, Pro-Israel America PAC, Florida Congressional Committee, Hudson Valley PAC, CityPAC, Citizens Organized PAC, Maryland Assoc. for Concerned Citizens, St Louisians for Better Government, National PAC, World Alliance for Israel, and Christians for Israel PAC &mdash; based on <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets' Pro-Israel industry list</a>.</li>
@@ -161,7 +185,8 @@
         <a href="https://www.opensecrets.org/political-action-committees-pacs/industry-detail/Q05/2024" target="_blank" rel="noopener">OpenSecrets Pro-Israel PACs</a>
         <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets Pro-Israel Overview</a>
       </div>
-    </div>
+      </div>
+    </details>
   </div>
 
   <script src="script.js"></script>
