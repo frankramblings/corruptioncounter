@@ -42,5 +42,10 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Update donation data [automated]"
-            git push
+            # Pull any new remote commits before pushing (avoids rejected push)
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              echo "Push attempt $i failed, retrying in $((i * 2))s..."
+              sleep $((i * 2))
+            done
           fi
