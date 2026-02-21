@@ -201,10 +201,20 @@
   function formatLastUpdated(isoString) {
     try {
       var d = new Date(isoString);
-      return 'Last updated: ' + d.toLocaleString('en-US', {
-        dateStyle: 'medium',
-        timeStyle: 'short'
-      });
+      var opts = { timeZone: 'America/New_York' };
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      // Extract Eastern-Time components
+      var parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        month: 'numeric', day: 'numeric',
+        hour: 'numeric', minute: '2-digit',
+        hour12: true
+      }).formatToParts(d);
+      var p = {};
+      parts.forEach(function (x) { p[x.type] = x.value; });
+      var month = months[parseInt(p.month, 10) - 1];
+      return 'Running total \u00b7 Updated ' + month + ' ' + p.day + ', ' + p.hour + ':' + p.minute + ' ' + p.dayPeriod + ' ET';
     } catch (e) {
       return '';
     }
