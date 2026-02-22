@@ -126,8 +126,6 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
 
     for committee_type in ["H", "S", "P"]:
         page = 1
-        last_index = None
-        last_amount = None
 
         while True:
             params = {
@@ -137,12 +135,8 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
                 "per_page": PER_PAGE,
                 "sort": "-disbursement_date",
                 "recipient_committee_type": committee_type,
+                "page": page,
             }
-
-            if last_index is not None:
-                params["last_index"] = last_index
-                if last_amount is not None:
-                    params["last_disbursement_amount"] = last_amount
 
             url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
             data = fetch_json(url)
@@ -167,13 +161,6 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
             pages = pagination.get("pages", 1)
 
             if not results or page >= pages:
-                break
-
-            last_indexes = pagination.get("last_indexes", {})
-            last_index = last_indexes.get("last_index")
-            last_amount = last_indexes.get("last_disbursement_amount")
-
-            if last_index is None:
                 break
 
             page += 1
