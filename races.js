@@ -2,6 +2,7 @@
   'use strict';
 
   var DATA_URL = 'data/candidates.json';
+  var IE_DATA_URL = 'data/independent_expenditures.json';
   var listEl = document.getElementById('race-list');
   var searchEl = document.getElementById('search');
   var stateFilterEl = document.getElementById('state-filter');
@@ -12,6 +13,7 @@
   var emptyEl = document.getElementById('empty');
 
   var allRaces = [];
+  var ieByCandidate = {};
 
   var STATE_NAMES = {
     AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
@@ -62,6 +64,12 @@
     return race.state;
   }
 
+  function getCandidateGrandTotal(c) {
+    var ie = ieByCandidate[c.candidate_id] || null;
+    var ieTotal = ie ? ie.total : 0;
+    return c.total + ieTotal;
+  }
+
   function groupIntoRaces(candidates) {
     var map = {};
     for (var i = 0; i < candidates.length; i++) {
@@ -76,13 +84,13 @@
           candidates: []
         };
       }
-      map[key].total += c.total;
+      map[key].total += getCandidateGrandTotal(c);
       map[key].candidates.push(c);
     }
     var races = [];
     for (var k in map) {
       if (map.hasOwnProperty(k)) {
-        map[k].candidates.sort(function (a, b) { return b.total - a.total; });
+        map[k].candidates.sort(function (a, b) { return getCandidateGrandTotal(b) - getCandidateGrandTotal(a); });
         races.push(map[k]);
       }
     }
@@ -149,13 +157,22 @@
       var html = '<div class="detail-title">Candidates in this race</div>';
       for (var j = 0; j < r.candidates.length; j++) {
         var c = r.candidates[j];
+        var candGrand = getCandidateGrandTotal(c);
+        var ie = ieByCandidate[c.candidate_id] || null;
         var badge = c.party
           ? '<span class="party-badge ' + partyClass(c.party) + '">' +
             (PARTY_LABELS[c.party] || c.party) + '</span>'
           : '';
+        var ieLabel = '';
+        if (ie && ie.total > 0) {
+          var parts = [];
+          if (ie.support > 0) parts.push('<span class="ie-tag ie-support-tag">+' + formatMoney(ie.support) + ' support</span>');
+          if (ie.oppose > 0) parts.push('<span class="ie-tag ie-oppose-tag">' + formatMoney(ie.oppose) + ' oppose</span>');
+          ieLabel = '<div class="ie-labels">' + parts.join(' ') + '</div>';
+        }
         html += '<div class="candidate-line">' +
-          '<span class="candidate-line-name">' + badge + escapeHtml(c.name) + '</span>' +
-          '<span class="cl-amount">' + formatMoney(c.total) + '</span></div>';
+          '<div class="candidate-line-name">' + badge + escapeHtml(c.name) + ieLabel + '</div>' +
+          '<span class="cl-amount">' + formatMoney(candGrand) + '</span></div>';
       }
       detail.innerHTML = html;
 
@@ -219,13 +236,57 @@
   }
 
   function fetchData() {
-    fetch(DATA_URL + '?t=' + Date.now())
+    var candidatesPromise = fetch(DATA_URL + '?t=' + Date.now())
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
+      });
+
+    var iePromise = fetch(IE_DATA_URL + '?t=' + Date.now())
+      .then(function (res) {
+        if (!res.ok) return { candidates: [] };
+        return res.json();
       })
-      .then(function (data) {
+      .catch(function () { return { candidates: [] }; });
+
+    Promise.all([candidatesPromise, iePromise])
+      .then(function (results) {
+        var data = results[0];
+        var ieData = results[1];
+
+        // Build IE lookup by candidate_id
+        ieByCandidate = {};
+        var ieCandidates = ieData.candidates || [];
+        for (var i = 0; i < ieCandidates.length; i++) {
+          var ic = ieCandidates[i];
+          ieByCandidate[ic.candidate_id] = ic;
+        }
+
         var candidates = data.candidates || [];
+
+        // Add IE-only candidates
+        var directCandIds = {};
+        for (var j = 0; j < candidates.length; j++) {
+          if (candidates[j].candidate_id) {
+            directCandIds[candidates[j].candidate_id] = true;
+          }
+        }
+        for (var k = 0; k < ieCandidates.length; k++) {
+          var ic2 = ieCandidates[k];
+          if (!directCandIds[ic2.candidate_id]) {
+            candidates.push({
+              name: ic2.name,
+              party: ic2.party,
+              state: ic2.state,
+              office: ic2.office,
+              district: ic2.district,
+              total: 0,
+              candidate_id: ic2.candidate_id,
+              pacs: [],
+            });
+          }
+        }
+
         allRaces = groupIntoRaces(candidates);
         errorEl.style.display = 'none';
         populateStateFilter(allRaces);

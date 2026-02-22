@@ -229,6 +229,23 @@
       line-height: 1.5;
     }
 
+    .spending-breakdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .spending-breakdown strong {
+      color: #bbb;
+    }
+    .breakdown-sep {
+      color: #444;
+    }
+
     .updated {
       font-size: 0.8rem;
       color: #555;
@@ -405,6 +422,7 @@
     </div>
 
     <p class="subtitle">to buy your U.S. congressional and presidential candidates.</p>
+    <div class="spending-breakdown" id="spending-breakdown" style="display:none;"></div>
     <p class="updated" id="updated"></p>
     <p class="error-msg" id="error"></p>
 
@@ -412,14 +430,16 @@
       <summary>Methodology</summary>
       <div class="content">
       <ul>
-        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees (House, Senate, and Presidential), as reported in FEC filings for the 2026 election cycle.</li>
+        <li><strong>What's counted:</strong> Direct contributions (Schedule B disbursements) made by pro-Israel PACs to federal candidate committees, plus independent expenditures (Schedule E) from pro-Israel Super PACs supporting or opposing federal candidates, as reported in FEC filings for the 2026 election cycle.</li>
         <li><strong>PACs included (28):</strong> AIPAC PAC (<a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">C00797670</a>), NORPAC, JStreetPAC, DMFI PAC, JACPAC, NACPAC, Desert Caucus, To Protect Our Heritage PAC, Republican Jewish Coalition PAC, Pro-Israel America PAC, Florida Congressional Committee / US Israel PAC, Hudson Valley PAC, CityPAC, Citizens Organized PAC, Maryland Assoc. for Concerned Citizens, St Louisians for Better Government, National PAC, World Alliance for Israel, Christians for Israel PAC, Friends of Israel PAC, Sun PAC, Heartland PAC, Delaware Valley PAC, Pacific Northwest PAC, Washington PAC, BayPAC, Americans for Good Government, and MOPAC &mdash; based on <a href="https://www.opensecrets.org/industries/indus?ind=Q05" target="_blank" rel="noopener">OpenSecrets' Pro-Israel industry list</a>.</li>
-        <li><strong>What's excluded:</strong> Independent expenditures (Super PAC spending), lobbying, dark money, and non-federal races.</li>
+        <li><strong>Super PACs included (1):</strong> United Democracy Project / UDP (<a href="https://www.fec.gov/data/committee/C00798280/" target="_blank" rel="noopener">C00798280</a>), AIPAC's affiliated Super PAC that makes independent expenditures to support or oppose candidates.</li>
+        <li><strong>What's excluded:</strong> Lobbying, dark money, and non-federal races.</li>
         <li><strong>Update frequency:</strong> Data is refreshed hourly from the FEC's OpenFEC API.</li>
       </ul>
       <div class="sources">
         <strong>Sources:</strong>
         <a href="https://www.fec.gov/data/committee/C00797670/" target="_blank" rel="noopener">AIPAC PAC (FEC)</a>
+        <a href="https://www.fec.gov/data/committee/C00798280/" target="_blank" rel="noopener">UDP Super PAC (FEC)</a>
         <a href="https://www.fec.gov/data/" target="_blank" rel="noopener">FEC Data Portal</a>
         <a href="https://api.open.fec.gov/developers/" target="_blank" rel="noopener">OpenFEC API Docs</a>
         <a href="https://www.opensecrets.org/political-action-committees-pacs/industry-detail/Q05/2024" target="_blank" rel="noopener">OpenSecrets Pro-Israel PACs</a>
