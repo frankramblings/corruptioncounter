@@ -1,7 +1,10 @@
 {
   "usd": 1378806.81,
-  "last_updated": "2026-02-21T20:42:00Z",
+  "independent_expenditures_usd": 0.0,
+  "combined_usd": 1378806.81,
+  "last_updated": "2026-02-22T04:34:07Z",
   "committees_queried": 28,
+  "ie_committees_queried": 1,
   "breakdown": {
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
@@ -93,6 +96,12 @@
     },
     "C00199950": {
       "name": "MOPAC",
+      "usd": 0.0
+    }
+  },
+  "ie_breakdown": {
+    "C00798280": {
+      "name": "United Democracy Project (UDP)",
       "usd": 0.0
     }
   }
