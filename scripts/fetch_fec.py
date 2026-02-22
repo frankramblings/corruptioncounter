@@ -145,7 +145,18 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
                     params["last_disbursement_amount"] = last_amount
 
             url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
-            data = fetch_json(url)
+            try:
+                data = fetch_json(url)
+            except HTTPError as e:
+                if e.code == 422:
+                    # FEC API pagination bug with certain filter+sort combos;
+                    # keep the data we already collected from earlier pages.
+                    print(f"  Warning: pagination stopped for {committee_name} "
+                          f"(type={committee_type}) at page {page} "
+                          f"due to API 422 — keeping partial results",
+                          file=sys.stderr)
+                    break
+                raise
             results = data.get("results", [])
 
             for item in results:
