@@ -126,8 +126,6 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
 
     for committee_type in ["H", "S", "P"]:
         page = 1
-        last_index = None
-        last_amount = None
 
         while True:
             params = {
@@ -137,26 +135,11 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
                 "per_page": PER_PAGE,
                 "sort": "-disbursement_date",
                 "recipient_committee_type": committee_type,
+                "page": page,
             }
 
-            if last_index is not None:
-                params["last_index"] = last_index
-                if last_amount is not None:
-                    params["last_disbursement_amount"] = last_amount
-
             url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
-            try:
-                data = fetch_json(url)
-            except HTTPError as e:
-                if e.code == 422:
-                    # FEC API pagination bug with certain filter+sort combos;
-                    # keep the data we already collected from earlier pages.
-                    print(f"  Warning: pagination stopped for {committee_name} "
-                          f"(type={committee_type}) at page {page} "
-                          f"due to API 422 — keeping partial results",
-                          file=sys.stderr)
-                    break
-                raise
+            data = fetch_json(url)
             results = data.get("results", [])
 
             for item in results:
@@ -178,13 +161,6 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
             pages = pagination.get("pages", 1)
 
             if not results or page >= pages:
-                break
-
-            last_indexes = pagination.get("last_indexes", {})
-            last_index = last_indexes.get("last_index")
-            last_amount = last_indexes.get("last_disbursement_amount")
-
-            if last_index is None:
                 break
 
             page += 1
