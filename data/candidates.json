@@ -1,6 +1,22 @@
 {
-  "last_updated": "2026-02-25T07:37:09Z",
+  "last_updated": "2026-02-25T09:23:31Z",
   "candidates": [
+    {
+      "candidate_id": "",
+      "name": "Graham Majority Fund",
+      "party": "",
+      "state": "VA",
+      "office": "H",
+      "district": "",
+      "total": 1057610.88,
+      "recipient_id": "C00690891",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 1057610.88
+        }
+      ]
+    },
     {
       "candidate_id": "",
       "name": "Whatley Victory Committee",
@@ -70,6 +86,22 @@
       ]
     },
     {
+      "candidate_id": "",
+      "name": "Defend Our Majority",
+      "party": "",
+      "state": "DC",
+      "office": "H",
+      "district": "",
+      "total": 600000.0,
+      "recipient_id": "C00895821",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 600000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H2IA02111",
       "name": "Christina Bohannan",
       "party": "DEM",
@@ -82,6 +114,26 @@
         {
           "name": "JStreetPAC",
           "amount": 579857.67
+        }
+      ]
+    },
+    {
+      "candidate_id": "",
+      "name": "Grow The Majority",
+      "party": "",
+      "state": "VA",
+      "office": "H",
+      "district": "",
+      "total": 497503.8,
+      "recipient_id": "C00858373",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 355753.8
+        },
+        {
+          "name": "NORPAC",
+          "amount": 141750.0
         }
       ]
     },
@@ -148,12 +200,16 @@
       "state": "FL",
       "office": "H",
       "district": "21",
-      "total": 364320.0,
+      "total": 364400.04,
       "recipient_id": "C00632257",
       "pacs": [
         {
           "name": "NORPAC",
           "amount": 364320.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
         }
       ]
     },
@@ -174,12 +230,12 @@
       ]
     },
     {
-      "candidate_id": "",
-      "name": "Torres For Congress",
-      "party": "",
+      "candidate_id": "H0NY15160",
+      "name": "Ritchie John Torres",
+      "party": "DEM",
       "state": "NY",
       "office": "H",
-      "district": "",
+      "district": "15",
       "total": 282924.0,
       "recipient_id": "C00699744",
       "pacs": [
@@ -226,6 +282,22 @@
         {
           "name": "NORPAC",
           "amount": 261000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "S4AK00214",
+      "name": "Dan Sullivan",
+      "party": "REP",
+      "state": "AK",
+      "office": "S",
+      "district": "00",
+      "total": 248522.64,
+      "recipient_id": "C00609255",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 248522.64
         }
       ]
     },
@@ -366,6 +438,22 @@
       ]
     },
     {
+      "candidate_id": "",
+      "name": "Cornyn Victory Committee",
+      "party": "",
+      "state": "TX",
+      "office": "H",
+      "district": "",
+      "total": 204000.0,
+      "recipient_id": "C00770180",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 204000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "S8GA00180",
       "name": "T. Jonathan Ossoff",
       "party": "DEM",
@@ -438,6 +526,26 @@
       ]
     },
     {
+      "candidate_id": "S6ME00159",
+      "name": "Susan M. Collins",
+      "party": "REP",
+      "state": "ME",
+      "office": "S",
+      "district": "00",
+      "total": 168000.0,
+      "recipient_id": "C00314575",
+      "pacs": [
+        {
+          "name": "NORPAC",
+          "amount": 126000.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 42000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H6NJ12268",
       "name": "Brad Cohen",
       "party": "DEM",
@@ -482,22 +590,6 @@
         {
           "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 142485.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "",
-      "name": "Grow The Majority",
-      "party": "",
-      "state": "VA",
-      "office": "H",
-      "district": "",
-      "total": 141750.0,
-      "recipient_id": "C00858373",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 141750.0
         }
       ]
     },
@@ -550,22 +642,6 @@
         {
           "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 525.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "S6ME00159",
-      "name": "Susan M. Collins",
-      "party": "REP",
-      "state": "ME",
-      "office": "S",
-      "district": "00",
-      "total": 126000.0,
-      "recipient_id": "C00314575",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 126000.0
         }
       ]
     },
@@ -954,13 +1030,29 @@
       ]
     },
     {
+      "candidate_id": "H0NJ07261",
+      "name": "Thomas H. Jr. Kean",
+      "party": "REP",
+      "state": "NJ",
+      "office": "H",
+      "district": "07",
+      "total": 30000.0,
+      "recipient_id": "C00703058",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 30000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H6FL06258",
       "name": "Randy Fine",
       "party": "REP",
       "state": "FL",
       "office": "H",
       "district": "06",
-      "total": 25500.0,
+      "total": 26100.0,
       "recipient_id": "C00893271",
       "pacs": [
         {
@@ -974,6 +1066,10 @@
         {
           "name": "Florida Congressional Committee / US Israel PAC",
           "amount": 7500.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 600.0
         }
       ]
     },
@@ -1006,6 +1102,26 @@
         {
           "name": "Citizens Organized PAC",
           "amount": 24000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "",
+      "name": "Johnson Leadership Fund",
+      "party": "",
+      "state": "VA",
+      "office": "H",
+      "district": "",
+      "total": 22580.04,
+      "recipient_id": "C00771246",
+      "pacs": [
+        {
+          "name": "Maryland Assoc. for Concerned Citizens",
+          "amount": 16500.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 6080.04
         }
       ]
     },
@@ -1162,22 +1278,6 @@
       ]
     },
     {
-      "candidate_id": "",
-      "name": "Johnson Leadership Fund",
-      "party": "",
-      "state": "VA",
-      "office": "H",
-      "district": "",
-      "total": 16500.0,
-      "recipient_id": "C00771246",
-      "pacs": [
-        {
-          "name": "Maryland Assoc. for Concerned Citizens",
-          "amount": 16500.0
-        }
-      ]
-    },
-    {
       "candidate_id": "S6MN00499",
       "name": "Angie Craig",
       "party": "DEM",
@@ -1190,6 +1290,26 @@
         {
           "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 15750.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0IA01174",
+      "name": "Ashley Hinson Arenholz",
+      "party": "REP",
+      "state": "IA",
+      "office": "H",
+      "district": "02",
+      "total": 15120.0,
+      "recipient_id": "C00706267",
+      "pacs": [
+        {
+          "name": "To Protect Our Heritage PAC",
+          "amount": 15000.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 120.0
         }
       ]
     },
@@ -1266,22 +1386,6 @@
       "district": "17",
       "total": 15000.0,
       "recipient_id": "C00815415",
-      "pacs": [
-        {
-          "name": "To Protect Our Heritage PAC",
-          "amount": 15000.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H0IA01174",
-      "name": "Ashley Hinson Arenholz",
-      "party": "REP",
-      "state": "IA",
-      "office": "H",
-      "district": "02",
-      "total": 15000.0,
-      "recipient_id": "C00706267",
       "pacs": [
         {
           "name": "To Protect Our Heritage PAC",
@@ -1438,6 +1542,22 @@
       ]
     },
     {
+      "candidate_id": "H0TX11230",
+      "name": "August Lee Ii Pfluger",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "11",
+      "total": 12503.76,
+      "recipient_id": "C00719294",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 12503.76
+        }
+      ]
+    },
+    {
       "candidate_id": "H8CA49074",
       "name": "Sara Jacobs",
       "party": "DEM",
@@ -1498,6 +1618,70 @@
         {
           "name": "JStreetPAC",
           "amount": 12300.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2IA03119",
+      "name": "Zach Nunn",
+      "party": "REP",
+      "state": "IA",
+      "office": "H",
+      "district": "03",
+      "total": 12120.0,
+      "recipient_id": "C00784389",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 12120.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "",
+      "name": "Lawler Victory Fund",
+      "party": "",
+      "state": "NY",
+      "office": "H",
+      "district": "",
+      "total": 12080.04,
+      "recipient_id": "C00817379",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 12080.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "",
+      "name": "Team Jordan",
+      "party": "",
+      "state": "OH",
+      "office": "H",
+      "district": "",
+      "total": 12000.0,
+      "recipient_id": "C00857615",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 12000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0IN05326",
+      "name": "Victoria Spartz",
+      "party": "REP",
+      "state": "IN",
+      "office": "H",
+      "district": "05",
+      "total": 12000.0,
+      "recipient_id": "C00737767",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 12000.0
         }
       ]
     },
@@ -1566,6 +1750,26 @@
       ]
     },
     {
+      "candidate_id": "S4IA00129",
+      "name": "Joni K Ernst",
+      "party": "REP",
+      "state": "IA",
+      "office": "S",
+      "district": "00",
+      "total": 7700.04,
+      "recipient_id": "C00546788",
+      "pacs": [
+        {
+          "name": "Florida Congressional Committee / US Israel PAC",
+          "amount": 7500.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 200.04
+        }
+      ]
+    },
+    {
       "candidate_id": "S4NC00162",
       "name": "Thom R Sen Tillis",
       "party": "REP",
@@ -1574,22 +1778,6 @@
       "district": "00",
       "total": 7500.0,
       "recipient_id": "C00545772",
-      "pacs": [
-        {
-          "name": "Florida Congressional Committee / US Israel PAC",
-          "amount": 7500.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "S4IA00129",
-      "name": "Joni K Ernst",
-      "party": "REP",
-      "state": "IA",
-      "office": "S",
-      "district": "00",
-      "total": 7500.0,
-      "recipient_id": "C00546788",
       "pacs": [
         {
           "name": "Florida Congressional Committee / US Israel PAC",
@@ -1610,6 +1798,22 @@
         {
           "name": "Sun PAC (SUNPAC)",
           "amount": 7500.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "S4MI00595",
+      "name": "Michael J Rogers",
+      "party": "REP",
+      "state": "MI",
+      "office": "S",
+      "district": "00",
+      "total": 6000.0,
+      "recipient_id": "C00849810",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 6000.0
         }
       ]
     },
@@ -1742,6 +1946,38 @@
       ]
     },
     {
+      "candidate_id": "H0LA01087",
+      "name": "Steve Mr Scalise",
+      "party": "REP",
+      "state": "LA",
+      "office": "H",
+      "district": "01",
+      "total": 3080.04,
+      "recipient_id": "C00394957",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 3080.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2MI07123",
+      "name": "Thomas More Barrett",
+      "party": "REP",
+      "state": "MI",
+      "office": "H",
+      "district": "07",
+      "total": 3000.0,
+      "recipient_id": "C00793976",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 3000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H4NY26078",
       "name": "Timothy Kennedy",
       "party": "DEM",
@@ -1790,6 +2026,86 @@
       ]
     },
     {
+      "candidate_id": "H8CA39240",
+      "name": "Young Kim",
+      "party": "REP",
+      "state": "CA",
+      "office": "H",
+      "district": "40",
+      "total": 1280.04,
+      "recipient_id": "C00665638",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 1280.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0TX15124",
+      "name": "Monica De La Cruz",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "15",
+      "total": 1200.0,
+      "recipient_id": "C00765719",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 1200.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "",
+      "name": "Elise Victory Fund",
+      "party": "",
+      "state": "NY",
+      "office": "H",
+      "district": "",
+      "total": 916.2,
+      "recipient_id": "C00630632",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 916.2
+        }
+      ]
+    },
+    {
+      "candidate_id": "H6FL01390",
+      "name": "Jimmy Jr. Patronis",
+      "party": "REP",
+      "state": "FL",
+      "office": "H",
+      "district": "01",
+      "total": 600.0,
+      "recipient_id": "C00893594",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 600.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0TX07170",
+      "name": "Wesley Hunt",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "38",
+      "total": 600.0,
+      "recipient_id": "C00701003",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 600.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H6AZ01314",
       "name": "Mark Robert Gordon",
       "party": "DEM",
@@ -1802,6 +2118,166 @@
         {
           "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 525.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H8IA02043",
+      "name": "Mariannette Jane Miller-Meeks",
+      "party": "REP",
+      "state": "IA",
+      "office": "H",
+      "district": "01",
+      "total": 120.0,
+      "recipient_id": "C00558825",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 120.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0IA04145",
+      "name": "Randall Feenstra",
+      "party": "REP",
+      "state": "IA",
+      "office": "H",
+      "district": "04",
+      "total": 120.0,
+      "recipient_id": "C00693663",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 120.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4NC05146",
+      "name": "Virginia Ann Foxx",
+      "party": "REP",
+      "state": "NC",
+      "office": "H",
+      "district": "05",
+      "total": 80.04,
+      "recipient_id": "C00386748",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0NY11078",
+      "name": "Nicole Malliotakis",
+      "party": "REP",
+      "state": "NY",
+      "office": "H",
+      "district": "11",
+      "total": 80.04,
+      "recipient_id": "C00694778",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0SC01394",
+      "name": "Nancy Mace",
+      "party": "REP",
+      "state": "SC",
+      "office": "H",
+      "district": "01",
+      "total": 80.04,
+      "recipient_id": "C00710103",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2TN07103",
+      "name": "David Kustoff",
+      "party": "REP",
+      "state": "TN",
+      "office": "H",
+      "district": "08",
+      "total": 80.04,
+      "recipient_id": "C00614826",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H6OH04082",
+      "name": "James D. Jordan",
+      "party": "REP",
+      "state": "OH",
+      "office": "H",
+      "district": "04",
+      "total": 80.04,
+      "recipient_id": "C00416594",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4TX12065",
+      "name": "Craig Goldman",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "12",
+      "total": 80.04,
+      "recipient_id": "C00855528",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4NY22051",
+      "name": "Claudia Tenney",
+      "party": "REP",
+      "state": "NY",
+      "office": "H",
+      "district": "24",
+      "total": 80.04,
+      "recipient_id": "C00632828",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 80.04
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2OH16051",
+      "name": "Max Miller",
+      "party": "REP",
+      "state": "OH",
+      "office": "H",
+      "district": "07",
+      "total": 79.44,
+      "recipient_id": "C00770818",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 79.44
         }
       ]
     }
