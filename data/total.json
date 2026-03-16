@@ -1,15 +1,11 @@
 {
-  "usd": 141190304.52,
+  "usd": 25777094.79,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 141190304.52,
-  "last_updated": "2026-03-16T10:00:57Z",
+  "combined_usd": 25777094.79,
+  "last_updated": "2026-03-16T10:58:55Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
-    "C00797670": {
-      "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 118929468.0
-    },
     "C00247403": {
       "name": "NORPAC",
       "usd": 8609183.88
@@ -53,6 +49,10 @@
     "C00236596": {
       "name": "World Alliance for Israel",
       "usd": 0.0
+    },
+    "C00345132": {
+      "name": "Republican Jewish Coalition PAC",
+      "usd": 3516258.27
     },
     "C00127811": {
       "name": "Florida Congressional Committee / US Israel PAC",
@@ -115,5 +115,10 @@
       "usd": 0.0
     }
   },
-  "ie_breakdown": {}
+  "ie_breakdown": {
+    "C00798280": {
+      "name": "United Democracy Project (UDP)",
+      "usd": 0.0
+    }
+  }
 }
