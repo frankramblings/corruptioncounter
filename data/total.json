@@ -1,14 +1,22 @@
 {
-  "usd": 13998537.21,
+  "usd": 25777094.79,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 13998537.21,
-  "last_updated": "2026-03-17T09:15:19Z",
+  "combined_usd": 25777094.79,
+  "last_updated": "2026-03-17T10:49:09Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00247403": {
       "name": "NORPAC",
       "usd": 8609183.88
+    },
+    "C00441949": {
+      "name": "JStreetPAC",
+      "usd": 7044890.16
+    },
+    "C00710848": {
+      "name": "DMFI PAC (Democratic Majority for Israel)",
+      "usd": 4733667.42
     },
     "C00139659": {
       "name": "Joint Action Committee for Political Affairs (JACPAC)",
@@ -107,10 +115,5 @@
       "usd": 0.0
     }
   },
-  "ie_breakdown": {
-    "C00798280": {
-      "name": "United Democracy Project (UDP)",
-      "usd": 0.0
-    }
-  }
+  "ie_breakdown": {}
 }
