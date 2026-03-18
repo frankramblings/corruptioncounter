@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   update:
@@ -33,6 +34,7 @@ jobs:
           git add data/total.json data/candidates.json data/independent_expenditures.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "Update donation data [automated]"
             # Pull any new remote commits before pushing (avoids rejected push)
@@ -41,4 +43,12 @@ jobs:
               echo "Push attempt $i failed, retrying in $((i * 2))s..."
               sleep $((i * 2))
             done
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+        id: commit
+
+      - name: Trigger GitHub Pages deploy
+        if: steps.commit.outputs.changed == 'true'
+        run: gh workflow run deploy-pages.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
