@@ -82,16 +82,16 @@ def get_api_key():
 
 
 def fetch_json(url, max_retries=4):
-    """Fetch a URL and return parsed JSON, with retry/backoff for 429s."""
+    """Fetch a URL and return parsed JSON, with retry/backoff for 429s and 422s."""
     for attempt in range(max_retries + 1):
         req = Request(url, headers={"User-Agent": "ProIsraelPACCounter/1.0"})
         try:
             with urlopen(req, timeout=30) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except HTTPError as e:
-            if e.code == 429 and attempt < max_retries:
+            if e.code in (429, 422) and attempt < max_retries:
                 wait = 2 ** (attempt + 1)  # 2, 4, 8, 16 seconds
-                print(f"Rate limited (429), retrying in {wait}s... (attempt {attempt + 1}/{max_retries})", file=sys.stderr)
+                print(f"HTTP {e.code}, retrying in {wait}s... (attempt {attempt + 1}/{max_retries})", file=sys.stderr)
                 time.sleep(wait)
                 continue
             print(f"HTTP error {e.code}: {e.reason} for {url}", file=sys.stderr)
@@ -127,44 +127,48 @@ def fetch_committee_contributions(api_key, committee_id, committee_name):
     for committee_type in ["H", "S", "P"]:
         page = 1
 
-        while True:
-            params = {
-                "api_key": api_key,
-                "committee_id": committee_id,
-                "two_year_transaction_period": TWO_YEAR_PERIOD,
-                "per_page": PER_PAGE,
-                "sort": "-disbursement_date",
-                "recipient_committee_type": committee_type,
-                "page": page,
-            }
+        try:
+            while True:
+                params = {
+                    "api_key": api_key,
+                    "committee_id": committee_id,
+                    "two_year_transaction_period": TWO_YEAR_PERIOD,
+                    "per_page": PER_PAGE,
+                    "sort": "-disbursement_date",
+                    "recipient_committee_type": committee_type,
+                    "page": page,
+                }
 
-            url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
-            data = fetch_json(url)
-            results = data.get("results", [])
+                url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
+                data = fetch_json(url)
+                results = data.get("results", [])
 
-            for item in results:
-                amount = item.get("disbursement_amount", 0)
-                total += amount
+                for item in results:
+                    amount = item.get("disbursement_amount", 0)
+                    total += amount
 
-                rcpt_id = item.get("recipient_committee_id")
-                if rcpt_id:
-                    if rcpt_id not in recipients:
-                        recipients[rcpt_id] = {
-                            "committee_name": item.get("recipient_name", ""),
-                            "state": item.get("recipient_state", ""),
-                            "type": committee_type,
-                            "total": 0.0,
-                        }
-                    recipients[rcpt_id]["total"] += amount
+                    rcpt_id = item.get("recipient_committee_id")
+                    if rcpt_id:
+                        if rcpt_id not in recipients:
+                            recipients[rcpt_id] = {
+                                "committee_name": item.get("recipient_name", ""),
+                                "state": item.get("recipient_state", ""),
+                                "type": committee_type,
+                                "total": 0.0,
+                            }
+                        recipients[rcpt_id]["total"] += amount
 
-            pagination = data.get("pagination", {})
-            pages = pagination.get("pages", 1)
+                pagination = data.get("pagination", {})
+                pages = pagination.get("pages", 1)
 
-            if not results or page >= pages:
-                break
+                if not results or page >= pages:
+                    break
 
-            page += 1
-            time.sleep(REQUEST_DELAY)
+                page += 1
+                time.sleep(REQUEST_DELAY)
+        except Exception as e:
+            print(f"  {committee_name} type={committee_type}: ERROR - {e}", file=sys.stderr)
+            # Continue with next committee_type instead of losing all data
 
         time.sleep(REQUEST_DELAY)
 
@@ -320,6 +324,12 @@ def main():
                 print(f"  {name} ({committee_id}): $0.00")
         except Exception as e:
             print(f"  {name} ({committee_id}): ERROR - {e}", file=sys.stderr)
+            # Still record the committee so it's visible in the output
+            breakdown[committee_id] = {
+                "name": name,
+                "usd": 0.0,
+                "error": str(e),
+            }
 
     # --- Look up candidate details for each recipient committee ---
     print(f"\nLooking up candidate details for {len(all_recipients)} recipients...")
@@ -412,6 +422,11 @@ def main():
                 print(f"  {name} ({committee_id}): $0.00")
         except Exception as e:
             print(f"  {name} ({committee_id}): ERROR - {e}", file=sys.stderr)
+            ie_breakdown[committee_id] = {
+                "name": name,
+                "usd": 0.0,
+                "error": str(e),
+            }
 
     # Build IE candidates list
     ie_candidates_list = []
