@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Fetch direct contributions from pro-Israel PACs to federal candidates
-for the 2026 cycle from the OpenFEC API, and write the total to
-data/total.json and per-candidate data to data/candidates.json.
+for the 2026 cycle from the OpenFEC API using Schedule A (receipts),
+and write the total to data/total.json and per-candidate data to
+data/candidates.json.
 
 Also fetches independent expenditures (Schedule E) from the United
 Democracy Project (UDP) Super PAC and writes per-candidate IE data
@@ -115,62 +116,86 @@ def format_candidate_name(name):
 
 def fetch_committee_contributions(api_key, committee_id, committee_name):
     """
-    Fetch Schedule B disbursements from a single committee to
-    House (H), Senate (S), and Presidential (P) candidate committees.
-    Returns (total_usd, recipients_dict).
+    Fetch Schedule A receipts by candidate committees *from* this PAC.
+    This captures what candidates report receiving, which is more complete
+    than Schedule B disbursements reported by the PAC.
 
+    Returns (total_usd, recipients_dict).
     recipients_dict: {recipient_committee_id: {committee_name, state, type, total}}
     """
     total = 0.0
     recipients = {}
 
-    for committee_type in ["H", "S", "P"]:
-        page = 1
+    last_index = None
+    last_contribution_receipt_date = None
+    page = 1
 
-        try:
-            while True:
-                params = {
-                    "api_key": api_key,
-                    "committee_id": committee_id,
-                    "two_year_transaction_period": TWO_YEAR_PERIOD,
-                    "per_page": PER_PAGE,
-                    "sort": "-disbursement_date",
-                    "recipient_committee_type": committee_type,
-                    "page": page,
-                }
+    try:
+        while True:
+            params = {
+                "api_key": api_key,
+                "contributor_id": committee_id,
+                "two_year_transaction_period": TWO_YEAR_PERIOD,
+                "per_page": PER_PAGE,
+                "sort": "-contribution_receipt_date",
+                "is_individual": "false",
+            }
 
-                url = f"{API_BASE}/schedules/schedule_b/?{urlencode(params)}"
-                data = fetch_json(url)
-                results = data.get("results", [])
+            if last_index is not None:
+                params["last_index"] = last_index
+                if last_contribution_receipt_date is not None:
+                    params["last_contribution_receipt_date"] = last_contribution_receipt_date
 
-                for item in results:
-                    amount = item.get("disbursement_amount", 0)
-                    total += amount
+            url = f"{API_BASE}/schedules/schedule_a/?{urlencode(params)}"
+            data = fetch_json(url)
+            results = data.get("results", [])
 
-                    rcpt_id = item.get("recipient_committee_id")
-                    if rcpt_id:
-                        if rcpt_id not in recipients:
-                            recipients[rcpt_id] = {
-                                "committee_name": item.get("recipient_name", ""),
-                                "state": item.get("recipient_state", ""),
-                                "type": committee_type,
-                                "total": 0.0,
-                            }
-                        recipients[rcpt_id]["total"] += amount
+            for item in results:
+                # Skip memo entries to avoid double-counting
+                if item.get("memo_code") == "X":
+                    continue
 
-                pagination = data.get("pagination", {})
-                pages = pagination.get("pages", 1)
+                amount = item.get("contribution_receipt_amount", 0)
+                if amount <= 0:
+                    continue
 
-                if not results or page >= pages:
-                    break
+                total += amount
 
-                page += 1
-                time.sleep(REQUEST_DELAY)
-        except Exception as e:
-            print(f"  {committee_name} type={committee_type}: ERROR - {e}", file=sys.stderr)
-            # Continue with next committee_type instead of losing all data
+                rcpt_id = item.get("committee_id")
+                committee_obj = item.get("committee") or {}
+                rcpt_type = committee_obj.get("committee_type", "")
+                rcpt_name = committee_obj.get("name", "") or item.get("committee_name", "")
+                rcpt_state = committee_obj.get("state", "") or ""
+                # Only count contributions to candidate committees (H, S, P)
+                # If committee_type is unknown, still include it to avoid undercounting
+                if rcpt_id and (rcpt_type in ("H", "S", "P") or rcpt_type == ""):
+                    if rcpt_id not in recipients:
+                        recipients[rcpt_id] = {
+                            "committee_name": rcpt_name,
+                            "state": rcpt_state,
+                            "type": rcpt_type or "H",
+                            "total": 0.0,
+                        }
+                    recipients[rcpt_id]["total"] += amount
 
-        time.sleep(REQUEST_DELAY)
+            pagination = data.get("pagination", {})
+
+            if not results:
+                break
+
+            last_indexes = pagination.get("last_indexes", {})
+            last_index = last_indexes.get("last_index")
+            last_contribution_receipt_date = last_indexes.get("last_contribution_receipt_date")
+
+            if last_index is None:
+                break
+
+            page += 1
+            time.sleep(REQUEST_DELAY)
+    except Exception as e:
+        print(f"  {committee_name}: ERROR - {e}", file=sys.stderr)
+
+    time.sleep(REQUEST_DELAY)
 
     return total, recipients
 
