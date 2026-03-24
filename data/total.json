@@ -1,30 +1,30 @@
 {
-  "usd": 9887984.97,
+  "usd": 52025660.87,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 9887984.97,
-  "last_updated": "2026-03-24T19:37:56Z",
+  "combined_usd": 52025660.87,
+  "last_updated": "2026-03-24T21:50:33Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00797670": {
       "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 398185.0
+      "usd": 28453709.49
     },
     "C00247403": {
       "name": "NORPAC",
-      "usd": 1777753.24
+      "usd": 5333259.72
     },
     "C00441949": {
       "name": "JStreetPAC",
-      "usd": 323142.52
+      "usd": 9428758.27
     },
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
-      "usd": 2092421.74
+      "usd": 3138632.61
     },
     "C00139659": {
       "name": "Joint Action Committee for Political Affairs (JACPAC)",
-      "usd": 1689887.21
+      "usd": 2026270.77
     },
     "C00147983": {
       "name": "National Action Committee (NACPAC)",
@@ -56,7 +56,7 @@
     },
     "C00345132": {
       "name": "Republican Jewish Coalition PAC",
-      "usd": 2820482.67
+      "usd": 2925893.67
     },
     "C00127811": {
       "name": "Florida Congressional Committee / US Israel PAC",
@@ -64,7 +64,7 @@
     },
     "C00195024": {
       "name": "Maryland Assoc. for Concerned Citizens",
-      "usd": 200928.75
+      "usd": 133952.5
     },
     "C00150995": {
       "name": "National PAC (NATPAC)",
@@ -122,7 +122,8 @@
   "ie_breakdown": {
     "C00798280": {
       "name": "United Democracy Project (UDP)",
-      "usd": 0.0
+      "usd": 0.0,
+      "error": "HTTP Error 429: Too Many Requests"
     }
   }
 }
