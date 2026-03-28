@@ -1,22 +1,22 @@
 {
-  "usd": 109065827.83,
+  "usd": 21119307.3,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 109065827.83,
-  "last_updated": "2026-03-28T14:33:58Z",
+  "combined_usd": 21119307.3,
+  "last_updated": "2026-03-28T15:46:34Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00797670": {
       "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 90466377.44
+      "usd": 1825357.77
     },
     "C00247403": {
       "name": "NORPAC",
-      "usd": 5333259.72
+      "usd": 2903305.29
     },
     "C00441949": {
       "name": "JStreetPAC",
-      "usd": 4797275.29
+      "usd": 7297329.6
     },
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
@@ -44,7 +44,7 @@
     },
     "C00135541": {
       "name": "To Protect Our Heritage PAC",
-      "usd": 147058.08
+      "usd": 220587.12
     },
     "C00148155": {
       "name": "St Louisians for Better Government",
@@ -56,11 +56,11 @@
     },
     "C00345132": {
       "name": "Republican Jewish Coalition PAC",
-      "usd": 2400220.64
+      "usd": 2925893.67
     },
     "C00127811": {
       "name": "Florida Congressional Committee / US Israel PAC",
-      "usd": 70963.44
+      "usd": 106445.16
     },
     "C00195024": {
       "name": "Maryland Assoc. for Concerned Citizens",
@@ -72,7 +72,7 @@
     },
     "C00187526": {
       "name": "CityPAC",
-      "usd": 32953.32
+      "usd": 21968.88
     },
     "C00699470": {
       "name": "Pro-Israel America PAC",
@@ -80,7 +80,7 @@
     },
     "C00720128": {
       "name": "Christians for Israel PAC",
-      "usd": 1399.82
+      "usd": 2099.73
     },
     "C00141747": {
       "name": "Friends of Israel PAC (FIPAC)",
@@ -122,7 +122,8 @@
   "ie_breakdown": {
     "C00798280": {
       "name": "United Democracy Project (UDP)",
-      "usd": 0.0
+      "usd": 0.0,
+      "error": "HTTP Error 429: Too Many Requests"
     }
   }
 }
