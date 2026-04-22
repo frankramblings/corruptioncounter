@@ -1,14 +1,14 @@
 {
-  "usd": 36767005.23,
+  "usd": 37540282.25,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 36767005.23,
-  "last_updated": "2026-04-22T20:09:28Z",
+  "combined_usd": 37540282.25,
+  "last_updated": "2026-04-22T22:04:33Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00797670": {
       "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 14254382.19
+      "usd": 17569113.4
     },
     "C00247403": {
       "name": "NORPAC",
@@ -16,7 +16,7 @@
     },
     "C00441949": {
       "name": "JStreetPAC",
-      "usd": 8471502.81
+      "usd": 4793438.08
     },
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
@@ -24,7 +24,7 @@
     },
     "C00139659": {
       "name": "Joint Action Committee for Political Affairs (JACPAC)",
-      "usd": 991066.38
+      "usd": 2127676.92
     },
     "C00147983": {
       "name": "National Action Committee (NACPAC)",
@@ -122,7 +122,8 @@
   "ie_breakdown": {
     "C00798280": {
       "name": "United Democracy Project (UDP)",
-      "usd": 0.0
+      "usd": 0.0,
+      "error": "HTTP Error 429: Too Many Requests"
     }
   }
 }
