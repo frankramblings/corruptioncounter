@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-15T23:26:27Z",
+  "last_updated": "2026-05-16T00:43:46Z",
   "candidates": [
     {
       "candidate_id": "",
@@ -100,7 +100,7 @@
       "state": "ME",
       "office": "S",
       "district": "00",
-      "total": 489712.74,
+      "total": 489212.74,
       "recipient_id": "C00314575",
       "pacs": [
         {
@@ -113,7 +113,7 @@
         },
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 9000.0
+          "amount": 8500.0
         }
       ]
     },
@@ -248,7 +248,7 @@
       "state": "FL",
       "office": "H",
       "district": "06",
-      "total": 311205.65,
+      "total": 309455.65,
       "recipient_id": "C00893271",
       "pacs": [
         {
@@ -269,7 +269,7 @@
         },
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 3500.0
+          "amount": 1750.0
         }
       ]
     },
@@ -424,7 +424,7 @@
       "state": "RI",
       "office": "H",
       "district": "02",
-      "total": 203430.0,
+      "total": 206930.0,
       "recipient_id": "C00238907",
       "pacs": [
         {
@@ -438,6 +438,10 @@
         {
           "name": "Maryland Assoc. for Concerned Citizens",
           "amount": 6000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3500.0
         }
       ]
     },
@@ -584,7 +588,7 @@
       "state": "NY",
       "office": "H",
       "district": "15",
-      "total": 171408.54,
+      "total": 172408.54,
       "recipient_id": "C00699744",
       "pacs": [
         {
@@ -598,6 +602,10 @@
         {
           "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 3000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1000.0
         }
       ]
     },
@@ -608,7 +616,7 @@
       "state": "AR",
       "office": "H",
       "district": "04",
-      "total": 162330.0,
+      "total": 165430.0,
       "recipient_id": "C00499988",
       "pacs": [
         {
@@ -620,12 +628,12 @@
           "amount": 15000.0
         },
         {
-          "name": "Sun PAC (SUNPAC)",
-          "amount": 6000.0
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 6700.0
         },
         {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 3600.0
+          "name": "Sun PAC (SUNPAC)",
+          "amount": 6000.0
         }
       ]
     },
@@ -704,7 +712,7 @@
       "state": "FL",
       "office": "H",
       "district": "21",
-      "total": 151469.65,
+      "total": 149469.65,
       "recipient_id": "C00632257",
       "pacs": [
         {
@@ -721,7 +729,7 @@
         },
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 4000.0
+          "amount": 2000.0
         },
         {
           "name": "Republican Jewish Coalition PAC",
@@ -784,7 +792,7 @@
       "state": "SC",
       "office": "S",
       "district": "00",
-      "total": 140400.0,
+      "total": 143900.0,
       "recipient_id": "C00458828",
       "pacs": [
         {
@@ -798,6 +806,10 @@
         {
           "name": "Maryland Assoc. for Concerned Citizens",
           "amount": 15000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3500.0
         }
       ]
     },
@@ -858,6 +870,30 @@
         {
           "name": "JStreetPAC",
           "amount": 128175.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0NJ07261",
+      "name": "Thomas H. Jr. Kean",
+      "party": "REP",
+      "state": "NJ",
+      "office": "H",
+      "district": "07",
+      "total": 127656.77,
+      "recipient_id": "C00703058",
+      "pacs": [
+        {
+          "name": "NORPAC",
+          "amount": 76620.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 35536.77
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 15500.0
         }
       ]
     },
@@ -932,12 +968,16 @@
       "state": "AK",
       "office": "S",
       "district": "00",
-      "total": 121950.0,
+      "total": 122950.0,
       "recipient_id": "C00570994",
       "pacs": [
         {
           "name": "NORPAC",
           "amount": 121950.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1000.0
         }
       ]
     },
@@ -1026,26 +1066,6 @@
       ]
     },
     {
-      "candidate_id": "H0NJ07261",
-      "name": "Thomas H. Jr. Kean",
-      "party": "REP",
-      "state": "NJ",
-      "office": "H",
-      "district": "07",
-      "total": 112156.77,
-      "recipient_id": "C00703058",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 76620.0
-        },
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 35536.77
-        }
-      ]
-    },
-    {
       "candidate_id": "H2IL13153",
       "name": "Nikki Budzinski",
       "party": "DEM",
@@ -1102,54 +1122,6 @@
       ]
     },
     {
-      "candidate_id": "H4NH02399",
-      "name": "Maggie Goodlander",
-      "party": "DEM",
-      "state": "NH",
-      "office": "H",
-      "district": "02",
-      "total": 99000.0,
-      "recipient_id": "C00878454",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 60300.0
-        },
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 17700.0
-        },
-        {
-          "name": "JStreetPAC",
-          "amount": 15000.0
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 6000.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H8NY06048",
-      "name": "Gregory W. Meeks",
-      "party": "DEM",
-      "state": "NY",
-      "office": "H",
-      "district": "05",
-      "total": 98402.45,
-      "recipient_id": "C00430991",
-      "pacs": [
-        {
-          "name": "JStreetPAC",
-          "amount": 87852.45
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 10550.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H6NJ05171",
       "name": "Josh Gottheimer",
       "party": "DEM",
@@ -1190,6 +1162,34 @@
       ]
     },
     {
+      "candidate_id": "H4NH02399",
+      "name": "Maggie Goodlander",
+      "party": "DEM",
+      "state": "NH",
+      "office": "H",
+      "district": "02",
+      "total": 96000.0,
+      "recipient_id": "C00878454",
+      "pacs": [
+        {
+          "name": "NORPAC",
+          "amount": 60300.0
+        },
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 17700.0
+        },
+        {
+          "name": "JStreetPAC",
+          "amount": 15000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H2OH16051",
       "name": "Max Miller",
       "party": "REP",
@@ -1202,6 +1202,54 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 95780.79
+        }
+      ]
+    },
+    {
+      "candidate_id": "H8NY06048",
+      "name": "Gregory W. Meeks",
+      "party": "DEM",
+      "state": "NY",
+      "office": "H",
+      "district": "05",
+      "total": 94877.45,
+      "recipient_id": "C00430991",
+      "pacs": [
+        {
+          "name": "JStreetPAC",
+          "amount": 87852.45
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 7025.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2WA03217",
+      "name": "Marie Gluesenkamp Perez",
+      "party": "DEM",
+      "state": "WA",
+      "office": "H",
+      "district": "03",
+      "total": 94760.0,
+      "recipient_id": "C00806174",
+      "pacs": [
+        {
+          "name": "NORPAC",
+          "amount": 68760.0
+        },
+        {
+          "name": "Citizens Organized PAC",
+          "amount": 15000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 8000.0
+        },
+        {
+          "name": "DMFI PAC (Democratic Majority for Israel)",
+          "amount": 3000.0
         }
       ]
     },
@@ -1366,30 +1414,6 @@
       ]
     },
     {
-      "candidate_id": "H2WA03217",
-      "name": "Marie Gluesenkamp Perez",
-      "party": "DEM",
-      "state": "WA",
-      "office": "H",
-      "district": "03",
-      "total": 86760.0,
-      "recipient_id": "C00806174",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 68760.0
-        },
-        {
-          "name": "Citizens Organized PAC",
-          "amount": 15000.0
-        },
-        {
-          "name": "DMFI PAC (Democratic Majority for Israel)",
-          "amount": 3000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H4CA16197",
       "name": "Sam T. Liccardo",
       "party": "DEM",
@@ -1528,12 +1552,16 @@
       "state": "SD",
       "office": "S",
       "district": "00",
-      "total": 78665.22,
+      "total": 78915.22,
       "recipient_id": "C00532465",
       "pacs": [
         {
           "name": "NORPAC",
           "amount": 78600.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 250.0
         },
         {
           "name": "Republican Jewish Coalition PAC",
@@ -1726,6 +1754,34 @@
       ]
     },
     {
+      "candidate_id": "H4FL20023",
+      "name": "Debbie Wasserman Schultz",
+      "party": "DEM",
+      "state": "FL",
+      "office": "H",
+      "district": "25",
+      "total": 66050.0,
+      "recipient_id": "C00385773",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 35750.0
+        },
+        {
+          "name": "Maryland Assoc. for Concerned Citizens",
+          "amount": 15000.0
+        },
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 9300.0
+        },
+        {
+          "name": "Sun PAC (SUNPAC)",
+          "amount": 6000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "",
       "name": "Torres Victory Fund",
       "party": "",
@@ -1810,12 +1866,12 @@
       ]
     },
     {
-      "candidate_id": "H6PA08293",
-      "name": "Paige Cognetti",
-      "party": "DEM",
+      "candidate_id": "",
+      "name": "Paige For Pa",
+      "party": "",
       "state": "PA",
       "office": "H",
-      "district": "08",
+      "district": "",
       "total": 62073.0,
       "recipient_id": "C00918151",
       "pacs": [
@@ -1858,34 +1914,6 @@
       ]
     },
     {
-      "candidate_id": "H4FL20023",
-      "name": "Debbie Wasserman Schultz",
-      "party": "DEM",
-      "state": "FL",
-      "office": "H",
-      "district": "25",
-      "total": 60800.0,
-      "recipient_id": "C00385773",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 30500.0
-        },
-        {
-          "name": "Maryland Assoc. for Concerned Citizens",
-          "amount": 15000.0
-        },
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 9300.0
-        },
-        {
-          "name": "Sun PAC (SUNPAC)",
-          "amount": 6000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H8TX16109",
       "name": "Veronica Escobar",
       "party": "DEM",
@@ -1898,30 +1926,6 @@
         {
           "name": "JStreetPAC",
           "amount": 60033.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H4MA05084",
-      "name": "Katherine Clark",
-      "party": "DEM",
-      "state": "MA",
-      "office": "H",
-      "district": "05",
-      "total": 58550.0,
-      "recipient_id": "C00541888",
-      "pacs": [
-        {
-          "name": "JStreetPAC",
-          "amount": 53400.0
-        },
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 3150.0
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 2000.0
         }
       ]
     },
@@ -1958,6 +1962,30 @@
         {
           "name": "NORPAC",
           "amount": 57613.53
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4MA05084",
+      "name": "Katherine Clark",
+      "party": "DEM",
+      "state": "MA",
+      "office": "H",
+      "district": "05",
+      "total": 57550.0,
+      "recipient_id": "C00541888",
+      "pacs": [
+        {
+          "name": "JStreetPAC",
+          "amount": 53400.0
+        },
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 3150.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1000.0
         }
       ]
     },
@@ -2026,26 +2054,6 @@
       ]
     },
     {
-      "candidate_id": "H4TX12065",
-      "name": "Craig Goldman",
-      "party": "REP",
-      "state": "TX",
-      "office": "H",
-      "district": "12",
-      "total": 55399.0,
-      "recipient_id": "C00855528",
-      "pacs": [
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 47901.0
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 7498.0
-        }
-      ]
-    },
-    {
       "candidate_id": "",
       "name": "Jfw Fund",
       "party": "",
@@ -2074,6 +2082,26 @@
         {
           "name": "NORPAC",
           "amount": 54000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4TX12065",
+      "name": "Craig Goldman",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "12",
+      "total": 53525.0,
+      "recipient_id": "C00855528",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 47901.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 5624.0
         }
       ]
     },
@@ -2286,18 +2314,42 @@
       ]
     },
     {
-      "candidate_id": "H4VA08224",
-      "name": "Donald Sternoff Jr. Beyer",
-      "party": "DEM",
+      "candidate_id": "",
+      "name": "Friends Of Don Beyer",
+      "party": "",
       "state": "VA",
       "office": "H",
-      "district": "08",
+      "district": "",
       "total": 45663.24,
       "recipient_id": "C00555888",
       "pacs": [
         {
           "name": "JStreetPAC",
           "amount": 45663.24
+        }
+      ]
+    },
+    {
+      "candidate_id": "S6OH00304",
+      "name": "Jon Husted",
+      "party": "REP",
+      "state": "OH",
+      "office": "S",
+      "district": "00",
+      "total": 44940.22,
+      "recipient_id": "C00896019",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 29800.0
+        },
+        {
+          "name": "Sun PAC (SUNPAC)",
+          "amount": 15000.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 140.22
         }
       ]
     },
@@ -2314,6 +2366,26 @@
         {
           "name": "JStreetPAC",
           "amount": 44925.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2TN07103",
+      "name": "David Kustoff",
+      "party": "REP",
+      "state": "TN",
+      "office": "H",
+      "district": "08",
+      "total": 43826.0,
+      "recipient_id": "C00614826",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 37326.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 6500.0
         }
       ]
     },
@@ -2410,6 +2482,42 @@
       ]
     },
     {
+      "candidate_id": "H8TX02166",
+      "name": "Daniel Crenshaw",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "02",
+      "total": 41000.0,
+      "recipient_id": "C00660795",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 41000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2CA36439",
+      "name": "Raul Dr. Ruiz",
+      "party": "DEM",
+      "state": "CA",
+      "office": "H",
+      "district": "25",
+      "total": 40950.0,
+      "recipient_id": "C00502575",
+      "pacs": [
+        {
+          "name": "JStreetPAC",
+          "amount": 36000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 4950.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H8CO07045",
       "name": "Brittany Louise Pettersen",
       "party": "DEM",
@@ -2438,22 +2546,6 @@
         {
           "name": "JStreetPAC",
           "amount": 39018.24
-        }
-      ]
-    },
-    {
-      "candidate_id": "S2TX00106",
-      "name": "John Sen Cornyn",
-      "party": "REP",
-      "state": "TX",
-      "office": "S",
-      "district": "00",
-      "total": 39000.0,
-      "recipient_id": "C00369033",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 39000.0
         }
       ]
     },
@@ -2490,18 +2582,26 @@
       ]
     },
     {
-      "candidate_id": "H2TN07103",
-      "name": "David Kustoff",
+      "candidate_id": "S4WV00159",
+      "name": "Shelley Moore Capito",
       "party": "REP",
-      "state": "TN",
-      "office": "H",
-      "district": "08",
-      "total": 37326.0,
-      "recipient_id": "C00614826",
+      "state": "WV",
+      "office": "S",
+      "district": "00",
+      "total": 38250.0,
+      "recipient_id": "C00539825",
       "pacs": [
         {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 18000.0
+        },
+        {
+          "name": "CityPAC",
+          "amount": 15000.0
+        },
+        {
           "name": "Republican Jewish Coalition PAC",
-          "amount": 37326.0
+          "amount": 5250.0
         }
       ]
     },
@@ -2534,38 +2634,6 @@
         {
           "name": "JStreetPAC",
           "amount": 600.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H8TX02166",
-      "name": "Daniel Crenshaw",
-      "party": "REP",
-      "state": "TX",
-      "office": "H",
-      "district": "02",
-      "total": 36000.0,
-      "recipient_id": "C00660795",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 36000.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H2CA36439",
-      "name": "Raul Dr. Ruiz",
-      "party": "DEM",
-      "state": "CA",
-      "office": "H",
-      "district": "25",
-      "total": 36000.0,
-      "recipient_id": "C00502575",
-      "pacs": [
-        {
-          "name": "JStreetPAC",
-          "amount": 36000.0
         }
       ]
     },
@@ -2658,6 +2726,22 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 12000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2AL03032",
+      "name": "Michael Rogers",
+      "party": "REP",
+      "state": "AL",
+      "office": "H",
+      "district": "03",
+      "total": 32500.0,
+      "recipient_id": "C00367862",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 32500.0
         }
       ]
     },
@@ -2786,26 +2870,22 @@
       ]
     },
     {
-      "candidate_id": "S4WV00159",
-      "name": "Shelley Moore Capito",
+      "candidate_id": "H8PA18199",
+      "name": "Guy Mr. Reschenthaler",
       "party": "REP",
-      "state": "WV",
-      "office": "S",
-      "district": "00",
-      "total": 30250.0,
-      "recipient_id": "C00539825",
+      "state": "PA",
+      "office": "H",
+      "district": "14",
+      "total": 31000.0,
+      "recipient_id": "C00657833",
       "pacs": [
         {
-          "name": "CityPAC",
-          "amount": 15000.0
+          "name": "NORPAC",
+          "amount": 24000.0
         },
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 10000.0
-        },
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 5250.0
+          "amount": 7000.0
         }
       ]
     },
@@ -2846,6 +2926,26 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 30074.01
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4MN06087",
+      "name": "Thomas Earl Jr. Emmer",
+      "party": "REP",
+      "state": "MN",
+      "office": "H",
+      "district": "06",
+      "total": 30000.0,
+      "recipient_id": "C00545749",
+      "pacs": [
+        {
+          "name": "NORPAC",
+          "amount": 28500.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1500.0
         }
       ]
     },
@@ -2898,46 +2998,6 @@
         {
           "name": "JStreetPAC",
           "amount": 28965.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H4MN06087",
-      "name": "Thomas Earl Jr. Emmer",
-      "party": "REP",
-      "state": "MN",
-      "office": "H",
-      "district": "06",
-      "total": 28500.0,
-      "recipient_id": "C00545749",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 28500.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H8NY22177",
-      "name": "Josh Riley",
-      "party": "DEM",
-      "state": "NY",
-      "office": "H",
-      "district": "19",
-      "total": 28000.0,
-      "recipient_id": "C00793760",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 13000.0
-        },
-        {
-          "name": "Maryland Assoc. for Concerned Citizens",
-          "amount": 12000.0
-        },
-        {
-          "name": "DMFI PAC (Democratic Majority for Israel)",
-          "amount": 3000.0
         }
       ]
     },
@@ -3014,34 +3074,6 @@
       ]
     },
     {
-      "candidate_id": "H2OH01194",
-      "name": "Greg Landsman",
-      "party": "DEM",
-      "state": "OH",
-      "office": "H",
-      "district": "01",
-      "total": 25900.0,
-      "recipient_id": "C00800276",
-      "pacs": [
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 12900.0
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 7000.0
-        },
-        {
-          "name": "DMFI PAC (Democratic Majority for Israel)",
-          "amount": 3000.0
-        },
-        {
-          "name": "Sun PAC (SUNPAC)",
-          "amount": 3000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H4IL07177",
       "name": "Melissa Conyears-Ervin",
       "party": "DEM",
@@ -3074,6 +3106,30 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 25140.27
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0NY02234",
+      "name": "Andrew Garbarino",
+      "party": "REP",
+      "state": "NY",
+      "office": "H",
+      "district": "02",
+      "total": 25065.22,
+      "recipient_id": "C00729954",
+      "pacs": [
+        {
+          "name": "Florida Congressional Committee / US Israel PAC",
+          "amount": 15000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 10000.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 65.22
         }
       ]
     },
@@ -3126,22 +3182,6 @@
       ]
     },
     {
-      "candidate_id": "H8PA18199",
-      "name": "Guy Mr. Reschenthaler",
-      "party": "REP",
-      "state": "PA",
-      "office": "H",
-      "district": "14",
-      "total": 24000.0,
-      "recipient_id": "C00657833",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 24000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H8MI11254",
       "name": "Haley Stevens",
       "party": "DEM",
@@ -3190,6 +3230,26 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 24000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4PA08124",
+      "name": "Rob Bresnahan",
+      "party": "REP",
+      "state": "PA",
+      "office": "H",
+      "district": "08",
+      "total": 23790.27,
+      "recipient_id": "C00852137",
+      "pacs": [
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 17790.27
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 6000.0
         }
       ]
     },
@@ -3266,6 +3326,34 @@
       ]
     },
     {
+      "candidate_id": "H2OH01194",
+      "name": "Greg Landsman",
+      "party": "DEM",
+      "state": "OH",
+      "office": "H",
+      "district": "01",
+      "total": 22400.0,
+      "recipient_id": "C00800276",
+      "pacs": [
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 12900.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3500.0
+        },
+        {
+          "name": "DMFI PAC (Democratic Majority for Israel)",
+          "amount": 3000.0
+        },
+        {
+          "name": "Sun PAC (SUNPAC)",
+          "amount": 3000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H8CA49074",
       "name": "Sara Jacobs",
       "party": "DEM",
@@ -3318,6 +3406,30 @@
       ]
     },
     {
+      "candidate_id": "H8NY22177",
+      "name": "Josh Riley",
+      "party": "DEM",
+      "state": "NY",
+      "office": "H",
+      "district": "19",
+      "total": 21500.0,
+      "recipient_id": "C00793760",
+      "pacs": [
+        {
+          "name": "Maryland Assoc. for Concerned Citizens",
+          "amount": 12000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 6500.0
+        },
+        {
+          "name": "DMFI PAC (Democratic Majority for Israel)",
+          "amount": 3000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H0GA05301",
       "name": "Nikema N. Williams",
       "party": "DEM",
@@ -3330,22 +3442,6 @@
         {
           "name": "JStreetPAC",
           "amount": 21300.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H4MD06340",
-      "name": "April Mcclain Delaney",
-      "party": "DEM",
-      "state": "MD",
-      "office": "H",
-      "district": "06",
-      "total": 21000.0,
-      "recipient_id": "C00854471",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 21000.0
         }
       ]
     },
@@ -3430,6 +3526,30 @@
       ]
     },
     {
+      "candidate_id": "H4MO01134",
+      "name": "Wesley Bell",
+      "party": "DEM",
+      "state": "MO",
+      "office": "H",
+      "district": "01",
+      "total": 20450.0,
+      "recipient_id": "C00842336",
+      "pacs": [
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 10650.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 6800.0
+        },
+        {
+          "name": "DMFI PAC (Democratic Majority for Israel)",
+          "amount": 3000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H8NJ03206",
       "name": "Andy Kim",
       "party": "DEM",
@@ -3458,30 +3578,6 @@
         {
           "name": "JStreetPAC",
           "amount": 20169.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H0NY02234",
-      "name": "Andrew Garbarino",
-      "party": "REP",
-      "state": "NY",
-      "office": "H",
-      "district": "02",
-      "total": 20065.22,
-      "recipient_id": "C00729954",
-      "pacs": [
-        {
-          "name": "Florida Congressional Committee / US Israel PAC",
-          "amount": 15000.0
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 5000.0
-        },
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 65.22
         }
       ]
     },
@@ -3518,6 +3614,22 @@
         {
           "name": "NORPAC",
           "amount": 19800.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "S2TX00106",
+      "name": "John Sen Cornyn",
+      "party": "REP",
+      "state": "TX",
+      "office": "S",
+      "district": "00",
+      "total": 19500.0,
+      "recipient_id": "C00369033",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 19500.0
         }
       ]
     },
@@ -3674,22 +3786,6 @@
       ]
     },
     {
-      "candidate_id": "H4PA08124",
-      "name": "Rob Bresnahan",
-      "party": "REP",
-      "state": "PA",
-      "office": "H",
-      "district": "08",
-      "total": 17790.27,
-      "recipient_id": "C00852137",
-      "pacs": [
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 17790.27
-        }
-      ]
-    },
-    {
       "candidate_id": "H8IA02043",
       "name": "Mariannette Jane Miller-Meeks",
       "party": "REP",
@@ -3702,6 +3798,26 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 17626.77
+        }
+      ]
+    },
+    {
+      "candidate_id": "H6CA24113",
+      "name": "Brad Sherman",
+      "party": "DEM",
+      "state": "CA",
+      "office": "H",
+      "district": "32",
+      "total": 17000.0,
+      "recipient_id": "C00308742",
+      "pacs": [
+        {
+          "name": "NORPAC",
+          "amount": 15000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 2000.0
         }
       ]
     },
@@ -3754,6 +3870,26 @@
       ]
     },
     {
+      "candidate_id": "H8GA06393",
+      "name": "Lucia Kay Ms. Mcbath",
+      "party": "DEM",
+      "state": "GA",
+      "office": "H",
+      "district": "06",
+      "total": 15500.0,
+      "recipient_id": "C00672295",
+      "pacs": [
+        {
+          "name": "Maryland Assoc. for Concerned Citizens",
+          "amount": 10500.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 5000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H4GA01039",
       "name": "Earl Leroy Carter",
       "party": "REP",
@@ -3774,6 +3910,26 @@
       ]
     },
     {
+      "candidate_id": "H8ID01124",
+      "name": "Russell Fulcher",
+      "party": "REP",
+      "state": "ID",
+      "office": "H",
+      "district": "01",
+      "total": 15180.0,
+      "recipient_id": "C00648295",
+      "pacs": [
+        {
+          "name": "Florida Congressional Committee / US Israel PAC",
+          "amount": 15000.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 180.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H6IL07339",
       "name": "Jason Friedman",
       "party": "DEM",
@@ -3790,38 +3946,22 @@
       ]
     },
     {
-      "candidate_id": "S6OH00304",
-      "name": "Jon Husted",
-      "party": "REP",
-      "state": "OH",
-      "office": "S",
-      "district": "00",
-      "total": 15140.22,
-      "recipient_id": "C00896019",
-      "pacs": [
-        {
-          "name": "Sun PAC (SUNPAC)",
-          "amount": 15000.0
-        },
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 140.22
-        }
-      ]
-    },
-    {
-      "candidate_id": "H2AL03032",
-      "name": "Michael Rogers",
-      "party": "REP",
-      "state": "AL",
+      "candidate_id": "H2FL22171",
+      "name": "Jared Moskowitz",
+      "party": "DEM",
+      "state": "FL",
       "office": "H",
-      "district": "03",
+      "district": "23",
       "total": 15000.0,
-      "recipient_id": "C00367862",
+      "recipient_id": "C00807628",
       "pacs": [
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 15000.0
+          "amount": 7500.0
+        },
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 7500.0
         }
       ]
     },
@@ -3834,22 +3974,6 @@
       "district": "",
       "total": 15000.0,
       "recipient_id": "C00772434",
-      "pacs": [
-        {
-          "name": "NORPAC",
-          "amount": 15000.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H6CA24113",
-      "name": "Brad Sherman",
-      "party": "DEM",
-      "state": "CA",
-      "office": "H",
-      "district": "32",
-      "total": 15000.0,
-      "recipient_id": "C00308742",
       "pacs": [
         {
           "name": "NORPAC",
@@ -3942,22 +4066,6 @@
       ]
     },
     {
-      "candidate_id": "H8ID01124",
-      "name": "Russell Fulcher",
-      "party": "REP",
-      "state": "ID",
-      "office": "H",
-      "district": "01",
-      "total": 15000.0,
-      "recipient_id": "C00648295",
-      "pacs": [
-        {
-          "name": "Florida Congressional Committee / US Israel PAC",
-          "amount": 15000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H0WI07101",
       "name": "Tom Tiffany",
       "party": "REP",
@@ -4022,26 +4130,6 @@
       ]
     },
     {
-      "candidate_id": "H8GA06393",
-      "name": "Lucia Kay Ms. Mcbath",
-      "party": "DEM",
-      "state": "GA",
-      "office": "H",
-      "district": "06",
-      "total": 14500.0,
-      "recipient_id": "C00672295",
-      "pacs": [
-        {
-          "name": "Maryland Assoc. for Concerned Citizens",
-          "amount": 10500.0
-        },
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 4000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H4AZ01194",
       "name": "Amish Dr. Shah",
       "party": "DEM",
@@ -4090,26 +4178,6 @@
       ]
     },
     {
-      "candidate_id": "H4MO01134",
-      "name": "Wesley Bell",
-      "party": "DEM",
-      "state": "MO",
-      "office": "H",
-      "district": "01",
-      "total": 13650.0,
-      "recipient_id": "C00842336",
-      "pacs": [
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 10650.0
-        },
-        {
-          "name": "DMFI PAC (Democratic Majority for Israel)",
-          "amount": 3000.0
-        }
-      ]
-    },
-    {
       "candidate_id": "H6NJ07201",
       "name": "Rebecca Bennett",
       "party": "DEM",
@@ -4122,26 +4190,6 @@
         {
           "name": "JStreetPAC",
           "amount": 13575.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H2NC02287",
-      "name": "Don Davis",
-      "party": "DEM",
-      "state": "NC",
-      "office": "H",
-      "district": "01",
-      "total": 13502.0,
-      "recipient_id": "C00795211",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 10502.0
-        },
-        {
-          "name": "DMFI PAC (Democratic Majority for Israel)",
-          "amount": 3000.0
         }
       ]
     },
@@ -4162,6 +4210,50 @@
       ]
     },
     {
+      "candidate_id": "H4RI01265",
+      "name": "Gabriel F Amo",
+      "party": "DEM",
+      "state": "RI",
+      "office": "H",
+      "district": "01",
+      "total": 13300.0,
+      "recipient_id": "C00838060",
+      "pacs": [
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 7500.0
+        },
+        {
+          "name": "JStreetPAC",
+          "amount": 4800.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H8KY02031",
+      "name": "S. Brett Brett Hon. Guthrie",
+      "party": "REP",
+      "state": "KY",
+      "office": "H",
+      "district": "02",
+      "total": 13000.0,
+      "recipient_id": "C00445023",
+      "pacs": [
+        {
+          "name": "Maryland Assoc. for Concerned Citizens",
+          "amount": 10500.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 2500.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H8KS03155",
       "name": "Sharice Davids",
       "party": "DEM",
@@ -4178,38 +4270,30 @@
       ]
     },
     {
-      "candidate_id": "H4RI01265",
-      "name": "Gabriel F Amo",
+      "candidate_id": "H2NY04244",
+      "name": "Laura Gillen",
       "party": "DEM",
-      "state": "RI",
+      "state": "NY",
       "office": "H",
-      "district": "01",
-      "total": 12300.0,
-      "recipient_id": "C00838060",
+      "district": "04",
+      "total": 12500.0,
+      "recipient_id": "C00840165",
       "pacs": [
         {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 7500.0
+          "name": "Maryland Assoc. for Concerned Citizens",
+          "amount": 6000.0
         },
         {
-          "name": "JStreetPAC",
-          "amount": 4800.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H6CA20152",
-      "name": "Jimmy Panetta",
-      "party": "DEM",
-      "state": "CA",
-      "office": "H",
-      "district": "19",
-      "total": 12000.0,
-      "recipient_id": "C00592154",
-      "pacs": [
+          "name": "DMFI PAC (Democratic Majority for Israel)",
+          "amount": 3000.0
+        },
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 12000.0
+          "amount": 2000.0
+        },
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 1500.0
         }
       ]
     },
@@ -4294,6 +4378,22 @@
       ]
     },
     {
+      "candidate_id": "H4MD06340",
+      "name": "April Mcclain Delaney",
+      "party": "DEM",
+      "state": "MD",
+      "office": "H",
+      "district": "06",
+      "total": 10500.0,
+      "recipient_id": "C00854471",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 10500.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H0GA14030",
       "name": "Clay Fuller",
       "party": "REP",
@@ -4326,30 +4426,6 @@
       ]
     },
     {
-      "candidate_id": "H2NY04244",
-      "name": "Laura Gillen",
-      "party": "DEM",
-      "state": "NY",
-      "office": "H",
-      "district": "04",
-      "total": 10500.0,
-      "recipient_id": "C00840165",
-      "pacs": [
-        {
-          "name": "Maryland Assoc. for Concerned Citizens",
-          "amount": 6000.0
-        },
-        {
-          "name": "DMFI PAC (Democratic Majority for Israel)",
-          "amount": 3000.0
-        },
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 1500.0
-        }
-      ]
-    },
-    {
       "candidate_id": "",
       "name": "Malliotakis Victory Committee",
       "party": "",
@@ -4361,22 +4437,6 @@
       "pacs": [
         {
           "name": "Republican Jewish Coalition PAC",
-          "amount": 10500.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H8KY02031",
-      "name": "S. Brett Brett Hon. Guthrie",
-      "party": "REP",
-      "state": "KY",
-      "office": "H",
-      "district": "02",
-      "total": 10500.0,
-      "recipient_id": "C00445023",
-      "pacs": [
-        {
-          "name": "Maryland Assoc. for Concerned Citizens",
           "amount": 10500.0
         }
       ]
@@ -4418,6 +4478,38 @@
       ]
     },
     {
+      "candidate_id": "H6CA20152",
+      "name": "Jimmy Panetta",
+      "party": "DEM",
+      "state": "CA",
+      "office": "H",
+      "district": "19",
+      "total": 10000.0,
+      "recipient_id": "C00592154",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 10000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "S6VA00093",
+      "name": "Mark Robert Warner",
+      "party": "DEM",
+      "state": "VA",
+      "office": "S",
+      "district": "00",
+      "total": 10000.0,
+      "recipient_id": "C00438713",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 10000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "",
       "name": "Cassidy Leadership Fund",
       "party": "",
@@ -4430,6 +4522,26 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 9900.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H6FL09179",
+      "name": "Darren Soto",
+      "party": "DEM",
+      "state": "FL",
+      "office": "H",
+      "district": "09",
+      "total": 9500.0,
+      "recipient_id": "C00581074",
+      "pacs": [
+        {
+          "name": "Sun PAC (SUNPAC)",
+          "amount": 7500.0
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 2000.0
         }
       ]
     },
@@ -4670,6 +4782,26 @@
       ]
     },
     {
+      "candidate_id": "H2NC02287",
+      "name": "Don Davis",
+      "party": "DEM",
+      "state": "NC",
+      "office": "H",
+      "district": "01",
+      "total": 8251.0,
+      "recipient_id": "C00795211",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 5251.0
+        },
+        {
+          "name": "DMFI PAC (Democratic Majority for Israel)",
+          "amount": 3000.0
+        }
+      ]
+    },
+    {
       "candidate_id": "S2WA00189",
       "name": "Patty Murray",
       "party": "DEM",
@@ -4754,6 +4886,22 @@
       ]
     },
     {
+      "candidate_id": "H6LA04138",
+      "name": "James Michael Johnson",
+      "party": "REP",
+      "state": "LA",
+      "office": "H",
+      "district": "04",
+      "total": 7500.0,
+      "recipient_id": "C00608695",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 7500.0
+        }
+      ]
+    },
+    {
       "candidate_id": "",
       "name": "Team Estes",
       "party": "",
@@ -4834,22 +4982,6 @@
       ]
     },
     {
-      "candidate_id": "H2FL22171",
-      "name": "Jared Moskowitz",
-      "party": "DEM",
-      "state": "FL",
-      "office": "H",
-      "district": "23",
-      "total": 7500.0,
-      "recipient_id": "C00807628",
-      "pacs": [
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
-          "amount": 7500.0
-        }
-      ]
-    },
-    {
       "candidate_id": "S6RI00221",
       "name": "Sheldon Whitehouse",
       "party": "DEM",
@@ -4882,18 +5014,38 @@
       ]
     },
     {
-      "candidate_id": "H6FL09179",
-      "name": "Darren Soto",
-      "party": "DEM",
+      "candidate_id": "H8FL27185",
+      "name": "Maria Elvira Salazar",
+      "party": "REP",
       "state": "FL",
       "office": "H",
-      "district": "09",
-      "total": 7500.0,
-      "recipient_id": "C00581074",
+      "district": "27",
+      "total": 7390.46,
+      "recipient_id": "C00714261",
       "pacs": [
         {
-          "name": "Sun PAC (SUNPAC)",
-          "amount": 7500.0
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 5390.46
+        },
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 2000.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2NY13096",
+      "name": "Adriano Espaillat",
+      "party": "DEM",
+      "state": "NY",
+      "office": "H",
+      "district": "13",
+      "total": 7000.0,
+      "recipient_id": "C00701953",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 7000.0
         }
       ]
     },
@@ -4914,6 +5066,22 @@
       ]
     },
     {
+      "candidate_id": "H4AZ08108",
+      "name": "Abraham Hamadeh",
+      "party": "REP",
+      "state": "AZ",
+      "office": "H",
+      "district": "08",
+      "total": 6751.0,
+      "recipient_id": "C00853986",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 6751.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H2CA52089",
       "name": "Scott Peters",
       "party": "DEM",
@@ -4930,6 +5098,26 @@
       ]
     },
     {
+      "candidate_id": "H0TX11230",
+      "name": "August Lee Ii Pfluger",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "11",
+      "total": 6625.94,
+      "recipient_id": "C00719294",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3500.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 3125.94
+        }
+      ]
+    },
+    {
       "candidate_id": "H4CA16049",
       "name": "Zoe Lofgren",
       "party": "DEM",
@@ -4942,22 +5130,6 @@
         {
           "name": "JStreetPAC",
           "amount": 6600.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H2FL04211",
-      "name": "Aaron P. Bean",
-      "party": "REP",
-      "state": "FL",
-      "office": "H",
-      "district": "04",
-      "total": 6534.0,
-      "recipient_id": "C00816983",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 6534.0
         }
       ]
     },
@@ -5114,12 +5286,12 @@
       ]
     },
     {
-      "candidate_id": "S0DE00092",
-      "name": "Christopher A. Coons",
-      "party": "DEM",
+      "candidate_id": "",
+      "name": "Chris Coons For Delaware",
+      "party": "",
       "state": "DE",
-      "office": "S",
-      "district": "00",
+      "office": "H",
+      "district": "",
       "total": 6000.0,
       "recipient_id": "C00475392",
       "pacs": [
@@ -5130,12 +5302,12 @@
       ]
     },
     {
-      "candidate_id": "H6NE02240",
-      "name": "James Leuschen",
-      "party": "DEM",
+      "candidate_id": "",
+      "name": "Leuschen For Congress",
+      "party": "",
       "state": "NE",
       "office": "H",
-      "district": "02",
+      "district": "",
       "total": 6000.0,
       "recipient_id": "C00920173",
       "pacs": [
@@ -5178,22 +5350,6 @@
       ]
     },
     {
-      "candidate_id": "H8FL27185",
-      "name": "Maria Elvira Salazar",
-      "party": "REP",
-      "state": "FL",
-      "office": "H",
-      "district": "27",
-      "total": 5390.46,
-      "recipient_id": "C00714261",
-      "pacs": [
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 5390.46
-        }
-      ]
-    },
-    {
       "candidate_id": "H6PA07188",
       "name": "Bob Brooks",
       "party": "DEM",
@@ -5226,6 +5382,42 @@
       ]
     },
     {
+      "candidate_id": "H4CA27111",
+      "name": "George Whitesides",
+      "party": "DEM",
+      "state": "CA",
+      "office": "H",
+      "district": "27",
+      "total": 5250.0,
+      "recipient_id": "C00834028",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3750.0
+        },
+        {
+          "name": "Joint Action Committee for Political Affairs (JACPAC)",
+          "amount": 1500.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H8CA39174",
+      "name": "Gilbert Cisneros",
+      "party": "DEM",
+      "state": "CA",
+      "office": "H",
+      "district": "31",
+      "total": 5100.0,
+      "recipient_id": "C00850420",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 5100.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H6MI10284",
       "name": "Tim Greimel",
       "party": "DEM",
@@ -5238,6 +5430,22 @@
         {
           "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 5058.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4IN08249",
+      "name": "Mark Mr. Messmer",
+      "party": "REP",
+      "state": "IN",
+      "office": "H",
+      "district": "08",
+      "total": 5001.0,
+      "recipient_id": "C00867218",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 5001.0
         }
       ]
     },
@@ -5322,18 +5530,38 @@
       ]
     },
     {
-      "candidate_id": "H2TX00064",
-      "name": "Keith Alan Self",
+      "candidate_id": "S6FL00640",
+      "name": "Ashley Moody",
       "party": "REP",
-      "state": "TX",
-      "office": "H",
-      "district": "03",
-      "total": 3750.0,
-      "recipient_id": "C00791293",
+      "state": "FL",
+      "office": "S",
+      "district": "00",
+      "total": 4428.68,
+      "recipient_id": "C00895763",
       "pacs": [
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 3750.0
+          "amount": 3500.0
+        },
+        {
+          "name": "Republican Jewish Coalition PAC",
+          "amount": 928.68
+        }
+      ]
+    },
+    {
+      "candidate_id": "H4MT02098",
+      "name": "Troy Downing",
+      "party": "REP",
+      "state": "MT",
+      "office": "H",
+      "district": "02",
+      "total": 3875.0,
+      "recipient_id": "C00855288",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3875.0
         }
       ]
     },
@@ -5482,18 +5710,18 @@
       ]
     },
     {
-      "candidate_id": "H0TX11230",
-      "name": "August Lee Ii Pfluger",
+      "candidate_id": "H2FL04211",
+      "name": "Aaron P. Bean",
       "party": "REP",
-      "state": "TX",
+      "state": "FL",
       "office": "H",
-      "district": "11",
-      "total": 3125.94,
-      "recipient_id": "C00719294",
+      "district": "04",
+      "total": 3267.0,
+      "recipient_id": "C00816983",
       "pacs": [
         {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 3125.94
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 3267.0
         }
       ]
     },
@@ -5514,12 +5742,12 @@
       ]
     },
     {
-      "candidate_id": "H6CA48310",
-      "name": "Marni Von Wilpert",
-      "party": "DEM",
+      "candidate_id": "",
+      "name": "Marni Von Wilpert For Congress",
+      "party": "",
       "state": "CA",
       "office": "H",
-      "district": "48",
+      "district": "",
       "total": 3000.0,
       "recipient_id": "C00918391",
       "pacs": [
@@ -5930,6 +6158,22 @@
       ]
     },
     {
+      "candidate_id": "H8VA06104",
+      "name": "Benjamin Lee Cline",
+      "party": "REP",
+      "state": "VA",
+      "office": "H",
+      "district": "06",
+      "total": 2125.0,
+      "recipient_id": "C00661561",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 2125.0
+        }
+      ]
+    },
+    {
       "candidate_id": "H4MA06090",
       "name": "Seth Moulton",
       "party": "DEM",
@@ -5998,6 +6242,38 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 408.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H2TX00064",
+      "name": "Keith Alan Self",
+      "party": "REP",
+      "state": "TX",
+      "office": "H",
+      "district": "03",
+      "total": 1875.0,
+      "recipient_id": "C00791293",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1875.0
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0KS01123",
+      "name": "Tracey Robert Mann",
+      "party": "REP",
+      "state": "KS",
+      "office": "H",
+      "district": "01",
+      "total": 1875.0,
+      "recipient_id": "C00460659",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 1875.0
         }
       ]
     },
@@ -6098,12 +6374,12 @@
       ]
     },
     {
-      "candidate_id": "H6IL07370",
-      "name": "Richard Boykin",
-      "party": "DEM",
+      "candidate_id": "",
+      "name": "Richard Boykin For Congress",
+      "party": "",
       "state": "IL",
       "office": "H",
-      "district": "07",
+      "district": "",
       "total": 1500.0,
       "recipient_id": "C00911388",
       "pacs": [
@@ -6173,22 +6449,6 @@
       "pacs": [
         {
           "name": "JStreetPAC",
-          "amount": 1500.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "H4CA27111",
-      "name": "George Whitesides",
-      "party": "DEM",
-      "state": "CA",
-      "office": "H",
-      "district": "27",
-      "total": 1500.0,
-      "recipient_id": "C00834028",
-      "pacs": [
-        {
-          "name": "Joint Action Committee for Political Affairs (JACPAC)",
           "amount": 1500.0
         }
       ]
@@ -6306,34 +6566,18 @@
       ]
     },
     {
-      "candidate_id": "H4AR02141",
-      "name": "James French Hill",
+      "candidate_id": "H2MO02102",
+      "name": "Ann L. Wagner",
       "party": "REP",
-      "state": "AR",
+      "state": "MO",
       "office": "H",
       "district": "02",
       "total": 1000.0,
-      "recipient_id": "C00551275",
+      "recipient_id": "C00495846",
       "pacs": [
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
           "amount": 1000.0
-        }
-      ]
-    },
-    {
-      "candidate_id": "S6FL00640",
-      "name": "Ashley Moody",
-      "party": "REP",
-      "state": "FL",
-      "office": "S",
-      "district": "00",
-      "total": 928.68,
-      "recipient_id": "C00895763",
-      "pacs": [
-        {
-          "name": "Republican Jewish Coalition PAC",
-          "amount": 928.68
         }
       ]
     },
@@ -6642,14 +6886,14 @@
       ]
     },
     {
-      "candidate_id": "H8VA06104",
-      "name": "Benjamin Lee Cline",
+      "candidate_id": "H4AR02141",
+      "name": "James French Hill",
       "party": "REP",
-      "state": "VA",
+      "state": "AR",
       "office": "H",
-      "district": "06",
+      "district": "02",
       "total": 500.0,
-      "recipient_id": "C00661561",
+      "recipient_id": "C00551275",
       "pacs": [
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
@@ -6866,22 +7110,6 @@
       ]
     },
     {
-      "candidate_id": "H2NE01118",
-      "name": "Mike Flood",
-      "party": "REP",
-      "state": "NE",
-      "office": "H",
-      "district": "01",
-      "total": 200.0,
-      "recipient_id": "C00801241",
-      "pacs": [
-        {
-          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-          "amount": 200.0
-        }
-      ]
-    },
-    {
       "candidate_id": "",
       "name": "Scott Brown Victory Committee",
       "party": "",
@@ -6930,14 +7158,14 @@
       ]
     },
     {
-      "candidate_id": "H0MA04192",
-      "name": "Jake Auchincloss",
-      "party": "DEM",
-      "state": "MA",
+      "candidate_id": "H2NE01118",
+      "name": "Mike Flood",
+      "party": "REP",
+      "state": "NE",
       "office": "H",
-      "district": "04",
+      "district": "01",
       "total": 100.0,
-      "recipient_id": "C00721449",
+      "recipient_id": "C00801241",
       "pacs": [
         {
           "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
@@ -6978,12 +7206,12 @@
       ]
     },
     {
-      "candidate_id": "H6TX38057",
-      "name": "Barrett Mcnabb",
-      "party": "REP",
+      "candidate_id": "",
+      "name": "Barrett Mcnabb For Texas",
+      "party": "",
       "state": "TX",
       "office": "H",
-      "district": "38",
+      "district": "",
       "total": 75.0,
       "recipient_id": "C00897819",
       "pacs": [
@@ -7070,6 +7298,22 @@
         {
           "name": "Republican Jewish Coalition PAC",
           "amount": 65.22
+        }
+      ]
+    },
+    {
+      "candidate_id": "H0MA04192",
+      "name": "Jake Auchincloss",
+      "party": "DEM",
+      "state": "MA",
+      "office": "H",
+      "district": "04",
+      "total": 50.0,
+      "recipient_id": "C00721449",
+      "pacs": [
+        {
+          "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
+          "amount": 50.0
         }
       ]
     },
