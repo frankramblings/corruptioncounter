@@ -1,22 +1,22 @@
 {
-  "usd": 43971458.71,
+  "usd": 43668789.32,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 43971458.71,
-  "last_updated": "2026-05-31T09:01:14Z",
+  "combined_usd": 43668789.32,
+  "last_updated": "2026-05-31T11:58:51Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00797670": {
       "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 17521256.15
+      "usd": 16578923.05
     },
     "C00247403": {
       "name": "NORPAC",
-      "usd": 6057099.72
+      "usd": 4573566.19
     },
     "C00441949": {
       "name": "JStreetPAC",
-      "usd": 9651213.96
+      "usd": 11774411.2
     },
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
@@ -122,7 +122,8 @@
   "ie_breakdown": {
     "C00798280": {
       "name": "United Democracy Project (UDP)",
-      "usd": 0.0
+      "usd": 0.0,
+      "error": "HTTP Error 429: Too Many Requests"
     }
   }
 }
