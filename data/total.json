@@ -1,22 +1,22 @@
 {
-  "usd": 118003596.65,
+  "usd": 110258207.68,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 118003596.65,
-  "last_updated": "2026-06-13T15:42:32Z",
+  "combined_usd": 110258207.68,
+  "last_updated": "2026-06-13T17:51:57Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00797670": {
       "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 96004911.43
+      "usd": 79920495.19
     },
     "C00247403": {
       "name": "NORPAC",
-      "usd": 4207239.42
+      "usd": 6310859.13
     },
     "C00441949": {
       "name": "JStreetPAC",
-      "usd": 10236280.72
+      "usd": 12808834.2
     },
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
@@ -24,7 +24,7 @@
     },
     "C00139659": {
       "name": "Joint Action Committee for Political Affairs (JACPAC)",
-      "usd": 1610008.71
+      "usd": 2319108.21
     },
     "C00147983": {
       "name": "National Action Committee (NACPAC)",
@@ -56,15 +56,15 @@
     },
     "C00345132": {
       "name": "Republican Jewish Coalition PAC",
-      "usd": 1952112.66
+      "usd": 4255570.02
     },
     "C00127811": {
       "name": "Florida Congressional Committee / US Israel PAC",
-      "usd": 0.0
+      "usd": 160374.3
     },
     "C00195024": {
       "name": "Maryland Assoc. for Concerned Citizens",
-      "usd": 0.0
+      "usd": 264921.75
     },
     "C00150995": {
       "name": "National PAC (NATPAC)",
@@ -72,7 +72,7 @@
     },
     "C00187526": {
       "name": "CityPAC",
-      "usd": 0.0
+      "usd": 58453.32
     },
     "C00699470": {
       "name": "Pro-Israel America PAC",
@@ -80,7 +80,7 @@
     },
     "C00720128": {
       "name": "Christians for Israel PAC",
-      "usd": 0.0
+      "usd": 2309.7
     },
     "C00141747": {
       "name": "Friends of Israel PAC (FIPAC)",
@@ -88,7 +88,7 @@
     },
     "C00378216": {
       "name": "Sun PAC (SUNPAC)",
-      "usd": 0.0
+      "usd": 164238.15
     },
     "C00131557": {
       "name": "Heartland PAC",
@@ -122,7 +122,8 @@
   "ie_breakdown": {
     "C00798280": {
       "name": "United Democracy Project (UDP)",
-      "usd": 0.0
+      "usd": 0.0,
+      "error": "HTTP Error 429: Too Many Requests"
     }
   }
 }
