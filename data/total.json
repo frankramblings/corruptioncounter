@@ -1,30 +1,30 @@
 {
-  "usd": 4465055.79,
+  "usd": 53231035.3,
   "independent_expenditures_usd": 0.0,
-  "combined_usd": 4465055.79,
-  "last_updated": "2026-07-25T18:31:38Z",
+  "combined_usd": 53231035.3,
+  "last_updated": "2026-07-25T20:32:18Z",
   "committees_queried": 28,
   "ie_committees_queried": 1,
   "breakdown": {
     "C00797670": {
       "name": "American Israel Public Affairs Cmte (AIPAC PAC)",
-      "usd": 0.0
+      "usd": 12863851.72
     },
     "C00247403": {
       "name": "NORPAC",
-      "usd": 0.0
+      "usd": 8484337.53
     },
     "C00441949": {
       "name": "JStreetPAC",
-      "usd": 0.0
+      "usd": 14976811.89
     },
     "C00710848": {
       "name": "DMFI PAC (Democratic Majority for Israel)",
-      "usd": 0.0
+      "usd": 7557474.09
     },
     "C00139659": {
       "name": "Joint Action Committee for Political Affairs (JACPAC)",
-      "usd": 0.0
+      "usd": 2690968.8
     },
     "C00147983": {
       "name": "National Action Committee (NACPAC)",
@@ -32,7 +32,7 @@
     },
     "C00110585": {
       "name": "Citizens Organized PAC",
-      "usd": 0.0
+      "usd": 150815.85
     },
     "C00102368": {
       "name": "Desert Caucus",
@@ -44,7 +44,7 @@
     },
     "C00135541": {
       "name": "To Protect Our Heritage PAC",
-      "usd": 0.0
+      "usd": 290208.9
     },
     "C00148155": {
       "name": "St Louisians for Better Government",
@@ -56,7 +56,7 @@
     },
     "C00345132": {
       "name": "Republican Jewish Coalition PAC",
-      "usd": 3775523.07
+      "usd": 5527033.8
     },
     "C00127811": {
       "name": "Florida Congressional Committee / US Israel PAC",
@@ -122,7 +122,8 @@
   "ie_breakdown": {
     "C00798280": {
       "name": "United Democracy Project (UDP)",
-      "usd": 0.0
+      "usd": 0.0,
+      "error": "HTTP Error 429: Too Many Requests"
     }
   }
 }
